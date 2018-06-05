@@ -8,4 +8,4 @@
 */
 
 // Load the cumulation module into the browser global automatically.
-module.exports = require('./Cumulation.js').initialize();
+module.exports = require('./Cumulation.js');

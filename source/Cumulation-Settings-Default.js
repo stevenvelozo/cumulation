@@ -25,6 +25,6 @@ module.exports = (
 		CacheExpirationTime: 300000,
 
 		// If this is true, show a whole lotta logs
-		DebugLog: true
+		DebugLog: false
 	}
 );

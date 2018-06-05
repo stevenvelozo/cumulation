@@ -36,7 +36,6 @@
   "dependencies": {
     "async": "^2.6.1",
     "cookie": "^0.3.1",
-    "fable-settings": "^1.0.1",
     "localforage": "^1.7.1",
     "matilde": "^1.0.0",
     "moment": "^2.22.2",

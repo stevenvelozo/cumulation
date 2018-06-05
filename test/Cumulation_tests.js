@@ -9,6 +9,7 @@
 var Chai = require("chai");
 var Expect = Chai.expect;
 var Assert = Chai.assert;
+var libCumulation = require('../source/Cumulation.js');
 
 
 var _MockSettings = (
@@ -35,12 +36,9 @@ suite
 					(fDone)=>
 					{
 						var testScope = {};
-						var testCumulation = require('../source/Cumulation.js').initialize(_MockSettings, testScope);
+						var testCumulation = new libCumulation(_MockSettings, testScope);
 						Expect(testCumulation).to.be.an('object', 'Cumulation should initialize as an object directly from the require statement.');
-						Expect(testScope)
-							.to.have.a.property('cumulation')
-							.that.is.a('object');
-						Expect(testCumulation.settings)
+						Expect(testCumulation._Settings)
 							.to.be.a('object');
 						fDone();
 					}
@@ -50,11 +48,8 @@ suite
 					'Try with a global scope...',
 					(fDone)=>
 					{
-						var testCumulation = require('../source/Cumulation.js').initialize(_MockSettings);
+						var testCumulation = new libCumulation(_MockSettings);
 						Expect(testCumulation).to.be.an('object', 'Cumulation should initialize as an object directly from the require statement.');
-						Expect(global)
-							.to.have.a.property('cumulation')
-							.that.is.a('object');
 						fDone();
 					}
 				);
@@ -63,16 +58,16 @@ suite
 					'Initialize with some basic settings',
 					(fDone)=>
 					{
-						var testCumulation = require('../source/Cumulation.js').initialize(
+						var testCumulation = new libCumulation(
 							{
 								Server:'https://my.server.com/1.0/',
 								Entity:'Animal',
 								Cached:false
 							});
 						Expect(testCumulation).to.be.an('object', 'Cumulation should initialize as an object directly from the require statement.');
-						Expect(testCumulation.settings.Entity)
+						Expect(testCumulation._Settings.Entity)
 							.to.equal('Animal');
-						Expect(testCumulation.settings.Server)
+						Expect(testCumulation._Settings.Server)
 							.to.equal('https://my.server.com/1.0/');
 						fDone();
 					}
@@ -90,13 +85,10 @@ suite
 					(fDone)=>
 					{
 						var testScope = {};
-						var testCumulation = require('../source/Cumulation.js').initialize(_MockSettings, testScope);
+						var testCumulation = new libCumulation(_MockSettings, testScope);
 
 						var tmpTestStart = testCumulation.log.getTimeStamp();
 
-						Expect(testScope)
-							.to.have.a.property('cumulation')
-							.that.is.a('object');
 						Expect(testCumulation.log)
 							.to.be.a('object');
 						testCumulation.log.trace('Test 1');
