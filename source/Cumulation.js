@@ -147,12 +147,14 @@ var Cumulation = ()=>
 
 					pResponse.on('end', ()=>
 						{
+							var tmpResult = null;
+							if (tmpData)
+								tmpResult = JSON.parse(tmpData);
 							if (_Settings.DebugLog)
 							{
-								_Log.debug(`==> completed data size ${tmpData.length}b received in ${_Log.getTimeDelta(tmpRequestTime)}ms`);
-								_Log.debug(tmpData);
+								_Log.debug(`==> completed data size ${tmpData.length}b received in ${_Log.getTimeDelta(tmpRequestTime)}ms`,tmpResult);
 							}
-							tmpCallBack(pError, tmpData);
+							tmpCallBack(pError, tmpResult);
 						});
 				});
 		};
