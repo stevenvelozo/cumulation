@@ -103,7 +103,7 @@ var Cumulation = ()=>
 		};
 		// setOnlineStatus
 		// getRecords(pOptionalFilter)
-		oCumulation.getRecordFromServer = (fCallback, pRecordID) =>
+		oCumulation.getRecordFromServer = (pRecordID, fCallback) =>
 		{
 			var tmpCallBack = (typeof(fCallback) === 'function') ? fCallback : ()=>{};
 			var tmpURL = _Settings.Server+_Settings.Entity+'/'+pRecordID;
@@ -158,9 +158,9 @@ var Cumulation = ()=>
 						});
 				});
 		};
-		oCumulation.getRecord = (fCallback, pRecordID) =>
+		oCumulation.getRecord = (pRecordID, fCallback) =>
 		{
-			oCumulation.getRecordFromServer(fCallback, pRecordID);
+			oCumulation.getRecordFromServer(pRecordID, fCallback);
 		};
 		var getRecordByID = (pRecordID) =>
 		{
