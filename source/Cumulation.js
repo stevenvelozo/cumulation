@@ -103,10 +103,10 @@ var Cumulation = ()=>
 		};
 		// setOnlineStatus
 		// getRecords(pOptionalFilter)
-		oCumulation.getRecordFromServer = (fCallback, pFilter) =>
+		oCumulation.getRecordFromServer = (fCallback, pRecordID) =>
 		{
 			var tmpCallBack = (typeof(fCallback) === 'function') ? fCallback : ()=>{};
-			var tmpURL = _Settings.Server+_Settings.Entity+'/'+parseFilter(pFilter);
+			var tmpURL = _Settings.Server+_Settings.Entity+'/'+pRecordID;
 			var tmpRequestOptions = (
 			{
 				url: tmpURL,
@@ -156,7 +156,10 @@ var Cumulation = ()=>
 						});
 				});
 		};
-
+		oCumulation.getRecord = (fCallback, pRecordID) =>
+		{
+			oCumulation.getRecordFromServer(fCallback, pRecordID);
+		};
 		var getRecordByID = (pRecordID) =>
 		{
 
