@@ -1,0 +1,43 @@
+{
+  "name": "cumulation",
+  "version": "1.0.0",
+  "description": "Cumulation data sync library.",
+  "main": "source/Cumulation.js",
+  "scripts": {
+    "start": "node source/Cumulation.js",
+    "coverage": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha -- -u tdd -R spec",
+    "test": "./node_modules/mocha/bin/_mocha -u tdd -R spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://stevenvelozo@github.com/stevenvelozo/cumulation.git"
+  },
+  "author": "steven velozo <steven@velozo.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/stevenvelozo/cumulation/issues"
+  },
+  "homepage": "https://github.com/stevenvelozo/cumulation#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "browserify": "^16.2.2",
+    "chai": "4.1.2",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^7.0.1",
+    "gulp-sourcemaps": "^2.6.4",
+    "gulp-terser": "^1.0.1",
+    "gulp-util": "^3.0.8",
+    "istanbul": "0.4.5",
+    "jsdom": "^11.11.0",
+    "mocha": "5.2.0",
+    "vinyl-buffer": "^1.0.1",
+    "vinyl-source-stream": "^2.0.0"
+  },
+  "dependencies": {
+    "async": "^2.6.1",
+    "fable-settings": "^1.0.1",
+    "localforage": "^1.7.1",
+    "moment": "^2.22.2",
+    "underscore": "^1.9.1"
+  }
+}

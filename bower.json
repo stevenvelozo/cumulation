@@ -1,0 +1,25 @@
+{
+  "name": "cumulation",
+  "version": "1.0.0",
+  "description": "Offline synchronization library.",
+  "main": "dist/cumulation.min.js",
+  "authors": [
+    "steven velozo <steven@velozo.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/stevenvelozo/cumulation",
+  "moduleType": [
+    "globals",
+    "node"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "coverage",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+  }
+}
