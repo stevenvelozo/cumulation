@@ -58,6 +58,25 @@ suite
 						fDone();
 					}
 				);
+				test
+				(
+					'Initialize with some basic settings',
+					(fDone)=>
+					{
+						var testCumulation = require('../source/Cumulation.js').initialize(
+							{
+								Server:'https://my.server.com/1.0/',
+								Entity:'Animal',
+								Cached:false
+							});
+						Expect(testCumulation).to.be.an('object', 'Cumulation should initialize as an object directly from the require statement.');
+						Expect(testCumulation.settings.Entity)
+							.to.equal('Animal');
+						Expect(testCumulation.settings.Server)
+							.to.equal('https://my.server.com/1.0/');
+						fDone();
+					}
+				)
 			}
 		);
 		suite

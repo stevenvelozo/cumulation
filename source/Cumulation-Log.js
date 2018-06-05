@@ -19,7 +19,7 @@ var CumulationLog = function()
 		var writeConsole = function(pLevel, pMessage, pObject)
 		{
 			// Write the message
-			console.log('['+pLevel+'] '+pMessage);
+			console.log('['+pLevel+'] ('+_Cumulation.settings.Entity+') '+pMessage);
 
 			// Write out the object if it is passed in
 			if (typeof(pObject) !== 'undefined')
@@ -67,6 +67,12 @@ var CumulationLog = function()
 			return +new Date();
 		};
 
+		var getTimeDelta = (pTimeStamp)=>
+		{
+			var tmpEndTime = +new Date();
+			return tmpEndTime-pTimeStamp;
+		};
+
 		// Log the delta between a timestamp, and now with a message
 		var logTimeDelta = function(pTimeStamp, pMessage)
 		{
@@ -90,6 +96,7 @@ var CumulationLog = function()
 			logTime: logTime,
 
 			getTimeStamp: getTimeStamp,
+			getTimeDelta: getTimeDelta,
 			logTimeDelta: logTimeDelta
 		});
 

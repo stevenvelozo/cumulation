@@ -24,6 +24,10 @@ var Cumulation = ()=>
 		_Dependencies.underscore = require('underscore');
 		_Dependencies.moment = require('moment');
 		_Dependencies.localforage = require('localforage');
+		_Dependencies.simpleget = require('simple-get');
+		_Dependencies.cookie = require('cookie');
+		_Dependencies.matilde = require('matilde');
+
 
 		// Setup the application settings object
 		var libFableSettings = require('fable-settings');
@@ -37,13 +41,16 @@ var Cumulation = ()=>
 		delete libFableSettings.default.MySQL;
 		delete libFableSettings.default.LogStreams;
 
-		var _Settings = libFableSettings.new(pSettings);
+		var _SettingsManager = libFableSettings.new(pSettings);
+		_SettingsManager.fill(require('./Cumulation-Settings-Default.js'));
+		var _Settings = _SettingsManager.settings
 
 		// Our factory object
 		var oCumulation = (
 		{
 			initialize: createNew
 		});
+
 
 		/**
 		 * External Dependency Libraries
@@ -65,7 +72,7 @@ var Cumulation = ()=>
 		 */
 		Object.defineProperty(oCumulation, 'settings',
 			{
-				get: function() { return _Settings.settings; },
+				get: function() { return _SettingsManager.settings; },
 				enumerable: true
 			});
 
@@ -82,6 +89,78 @@ var Cumulation = ()=>
 				get: function() { return _Log; },
 				enumerable: true
 			});		 
+
+		var parseFilter = (pFilter) =>
+		{
+			if (typeof(pFilter) === 'string')
+				return pFilter;
+			else if (typeof(pFilter) === 'number')
+				return pFilter.toString();
+			//else if (typeof(pFilter) === 'object')
+			//	return _Dependencies.matilde
+			else
+				return '';
+		};
+		// setOnlineStatus
+		// getRecords(pOptionalFilter)
+		oCumulation.getRecordFromServer = (fCallback, pFilter) =>
+		{
+			var tmpCallBack = (typeof(fCallback) === 'function') ? fCallback : ()=>{};
+			var tmpURL = _Settings.Server+_Settings.Entity+'/'+parseFilter(pFilter);
+			var tmpRequestOptions = (
+			{
+				url: tmpURL,
+				headers:
+				{
+					cookie: ''
+				}
+			});
+
+			var tmpCookies = [];
+			Object.keys(_Settings.Cookies).forEach((pKey)=>
+				{
+					tmpCookies.push(_Dependencies.cookie.serialize(pKey, _Settings.Cookies[pKey]));
+				});
+			tmpRequestOptions.headers.cookie = tmpCookies.join(';');
+
+			if (_Settings.DebugLog)
+				_Log.debug(`Beginning request`,tmpRequestOptions);
+			var tmpRequestTime = _Log.getTimeStamp();
+
+			_Dependencies.simpleget.get(tmpRequestOptions, (pError, pResponse)=>
+				{
+					if (pError)
+					{
+						return tmpCallBack(pError);
+					}
+					if (_Settings.DebugLog)
+						_Log.debug(`--> connected in ${_Log.getTimeDelta(tmpRequestTime)}ms code ${pResponse.statusCode}`);
+
+					var tmpData = '';
+
+					pResponse.on('data', (pChunk)=>
+						{
+							if (_Settings.DebugLog)
+								_Log.debug(`--> data chunk size ${pChunk.length}b received in ${_Log.getTimeDelta(tmpRequestTime)}ms`);
+							tmpData += pChunk;
+						});
+
+					pResponse.on('end', ()=>
+						{
+							if (_Settings.DebugLog)
+							{
+								_Log.debug(`==> completed data size ${tmpData.length}b received in ${_Log.getTimeDelta(tmpRequestTime)}ms`);
+								_Log.debug(tmpData);
+							}
+							tmpCallBack(pError, tmpData);
+						});
+				});
+		};
+
+		var getRecordByID = (pRecordID) =>
+		{
+
+		};
 
 		// Register dependencies globally with the browser if they aren't there
 		var registerGlobalDependency = (pDependencyHash, pDependency) =>
