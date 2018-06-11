@@ -39,6 +39,12 @@ class Cumulation
 		else
 			return '';
 	};
+	
+	/**
+	 * 
+	 * GET RECORD
+	 * 
+	**/
 	getRecordFromServer (pRecordID, fCallback)
 	{
 		let tmpCallBack = (typeof(fCallback) === 'function') ? fCallback : ()=>{};
@@ -95,6 +101,201 @@ class Cumulation
 			});
 	};
 	getRecord (pRecordID, fCallback)
+	{
+		this.getRecordFromServer(pRecordID, fCallback);
+	};
+	
+	/**
+	 * 
+	 * PUT RECORD
+	 * 
+	**/
+	putRecordToServer (pRecordID, fCallback)
+	{
+		let tmpCallBack = (typeof(fCallback) === 'function') ? fCallback : ()=>{};
+		let tmpURL = this._Settings.Server+this._Settings.Entity+'/'+pRecordID;
+		let tmpRequestOptions = (
+		{
+			url: tmpURL,
+			headers:
+			{
+				cookie: ''
+			}
+		});
+
+		let tmpCookies = [];
+		Object.keys(this._Settings.Cookies).forEach((pKey)=>
+			{
+				tmpCookies.push(this._Dependencies.cookie.serialize(pKey, this._Settings.Cookies[pKey]));
+			});
+		tmpRequestOptions.headers.cookie = tmpCookies.join(';');
+
+		if (this._Settings.DebugLog)
+			this._Log.debug(`Beginning request`,tmpRequestOptions);
+		let tmpRequestTime = this._Log.getTimeStamp();
+
+		this._Dependencies.simpleget.put(tmpRequestOptions, (pError, pResponse)=>
+			{
+				if (pError)
+				{
+					return tmpCallBack(pError);
+				}
+				if (this._Settings.DebugLog)
+					this._Log.debug(`--> connected in ${this._Log.getTimeDelta(tmpRequestTime)}ms code ${pResponse.statusCode}`);
+
+				let tmpData = '';
+
+				pResponse.on('data', (pChunk)=>
+					{
+						if (this._Settings.DebugLog)
+							this._Log.debug(`--> data chunk size ${pChunk.length}b received in ${this._Log.getTimeDelta(tmpRequestTime)}ms`);
+						tmpData += pChunk;
+					});
+
+				pResponse.on('end', ()=>
+					{
+						let tmpResult = null;
+						if (tmpData)
+							tmpResult = JSON.parse(tmpData);
+						if (this._Settings.DebugLog)
+						{
+							this._Log.debug(`==> completed data size ${tmpData.length}b received in ${this._Log.getTimeDelta(tmpRequestTime)}ms`,tmpResult);
+						}
+						tmpCallBack(pError, tmpResult);
+					});
+			});
+	};
+	putRecord (pRecordID, fCallback)
+	{
+		this.puttRecordToServer(pRecordID, fCallback);
+	};
+	
+	/**
+	 * 
+	 * POST RECORD
+	 * 
+	**/
+	postRecordToServer (pRecordID, fCallback)
+	{
+		let tmpCallBack = (typeof(fCallback) === 'function') ? fCallback : ()=>{};
+		let tmpURL = this._Settings.Server+this._Settings.Entity+'/'+pRecordID;
+		let tmpRequestOptions = (
+		{
+			url: tmpURL,
+			headers:
+			{
+				cookie: ''
+			}
+		});
+
+		let tmpCookies = [];
+		Object.keys(this._Settings.Cookies).forEach((pKey)=>
+			{
+				tmpCookies.push(this._Dependencies.cookie.serialize(pKey, this._Settings.Cookies[pKey]));
+			});
+		tmpRequestOptions.headers.cookie = tmpCookies.join(';');
+
+		if (this._Settings.DebugLog)
+			this._Log.debug(`Beginning request`,tmpRequestOptions);
+		let tmpRequestTime = this._Log.getTimeStamp();
+
+		this._Dependencies.simpleget.post(tmpRequestOptions, (pError, pResponse)=>
+			{
+				if (pError)
+				{
+					return tmpCallBack(pError);
+				}
+				if (this._Settings.DebugLog)
+					this._Log.debug(`--> connected in ${this._Log.getTimeDelta(tmpRequestTime)}ms code ${pResponse.statusCode}`);
+
+				let tmpData = '';
+
+				pResponse.on('data', (pChunk)=>
+					{
+						if (this._Settings.DebugLog)
+							this._Log.debug(`--> data chunk size ${pChunk.length}b received in ${this._Log.getTimeDelta(tmpRequestTime)}ms`);
+						tmpData += pChunk;
+					});
+
+				pResponse.on('end', ()=>
+					{
+						let tmpResult = null;
+						if (tmpData)
+							tmpResult = JSON.parse(tmpData);
+						if (this._Settings.DebugLog)
+						{
+							this._Log.debug(`==> completed data size ${tmpData.length}b received in ${this._Log.getTimeDelta(tmpRequestTime)}ms`,tmpResult);
+						}
+						tmpCallBack(pError, tmpResult);
+					});
+			});
+	};
+	putRecord (pRecordID, fCallback)
+	{
+		this.puttRecordToServer(pRecordID, fCallback);
+	};
+		
+	/**
+	 * 
+	 * DELETE RECORD
+	 * 
+	**/
+	deleteRecordFromServer (pRecordID, fCallback)
+	{
+		let tmpCallBack = (typeof(fCallback) === 'function') ? fCallback : ()=>{};
+		let tmpURL = this._Settings.Server+this._Settings.Entity+'/'+pRecordID;
+		let tmpRequestOptions = (
+		{
+			url: tmpURL,
+			headers:
+			{
+				cookie: ''
+			}
+		});
+
+		let tmpCookies = [];
+		Object.keys(this._Settings.Cookies).forEach((pKey)=>
+			{
+				tmpCookies.push(this._Dependencies.cookie.serialize(pKey, this._Settings.Cookies[pKey]));
+			});
+		tmpRequestOptions.headers.cookie = tmpCookies.join(';');
+
+		if (this._Settings.DebugLog)
+			this._Log.debug(`Beginning request`,tmpRequestOptions);
+		let tmpRequestTime = this._Log.getTimeStamp();
+
+		this._Dependencies.simpleget.delete(tmpRequestOptions, (pError, pResponse)=>
+			{
+				if (pError)
+				{
+					return tmpCallBack(pError);
+				}
+				if (this._Settings.DebugLog)
+					this._Log.debug(`--> connected in ${this._Log.getTimeDelta(tmpRequestTime)}ms code ${pResponse.statusCode}`);
+
+				let tmpData = '';
+
+				pResponse.on('data', (pChunk)=>
+					{
+						if (this._Settings.DebugLog)
+							this._Log.debug(`--> data chunk size ${pChunk.length}b received in ${this._Log.getTimeDelta(tmpRequestTime)}ms`);
+						tmpData += pChunk;
+					});
+
+				pResponse.on('end', ()=>
+					{
+						let tmpResult = null;
+						if (tmpData)
+							tmpResult = JSON.parse(tmpData);
+						if (this._Settings.DebugLog)
+						{
+							this._Log.debug(`==> completed data size ${tmpData.length}b received in ${this._Log.getTimeDelta(tmpRequestTime)}ms`,tmpResult);
+						}
+						tmpCallBack(pError, tmpResult);
+					});
+			});
+	};
+	deleteRecord (pRecordID, fCallback)
 	{
 		this.getRecordFromServer(pRecordID, fCallback);
 	};
