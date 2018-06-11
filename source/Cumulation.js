@@ -110,17 +110,18 @@ class Cumulation
 	 * PUT RECORD
 	 * 
 	**/
-	putRecordToServer (pRecordID, fCallback)
+	putRecordToServer (pRecordObject, fCallback)
 	{
 		let tmpCallBack = (typeof(fCallback) === 'function') ? fCallback : ()=>{};
-		let tmpURL = this._Settings.Server+this._Settings.Entity+'/'+pRecordID;
+		let tmpURL = this._Settings.Server+this._Settings.Entity+'/';
 		let tmpRequestOptions = (
 		{
 			url: tmpURL,
 			headers:
 			{
 				cookie: ''
-			}
+			},
+			data: pRecordObject
 		});
 
 		let tmpCookies = [];
@@ -165,9 +166,9 @@ class Cumulation
 					});
 			});
 	};
-	putRecord (pRecordID, fCallback)
+	putRecord (pRecordObject, fCallback)
 	{
-		this.puttRecordToServer(pRecordID, fCallback);
+		this.puttRecordToServer(pRecordObject, fCallback);
 	};
 	
 	/**
@@ -175,17 +176,18 @@ class Cumulation
 	 * POST RECORD
 	 * 
 	**/
-	postRecordToServer (pRecordID, fCallback)
+	postRecordToServer (pRecordObject, fCallback)
 	{
 		let tmpCallBack = (typeof(fCallback) === 'function') ? fCallback : ()=>{};
-		let tmpURL = this._Settings.Server+this._Settings.Entity+'/'+pRecordID;
+		let tmpURL = this._Settings.Server+this._Settings.Entity+'/';
 		let tmpRequestOptions = (
 		{
 			url: tmpURL,
 			headers:
 			{
 				cookie: ''
-			}
+			},
+			data: pRecordObject
 		});
 
 		let tmpCookies = [];
@@ -230,9 +232,9 @@ class Cumulation
 					});
 			});
 	};
-	putRecord (pRecordID, fCallback)
+	putRecord (pRecordObject, fCallback)
 	{
-		this.puttRecordToServer(pRecordID, fCallback);
+		this.puttRecordToServer(pRecordObject, fCallback);
 	};
 		
 	/**
