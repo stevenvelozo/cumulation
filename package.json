@@ -1,6 +1,6 @@
 {
   "name": "cumulation",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Cumulation data sync library.",
   "main": "source/Cumulation.js",
   "scripts": {
