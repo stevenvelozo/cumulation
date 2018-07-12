@@ -18,6 +18,8 @@ module.exports = (
 		Online: false,
 		// Any cookies to be sent
 		Cookies: {},
+		
+		Headers: {},
 
 		// If cached is false the service will always try to get and put data to the server
 		Cached: true,

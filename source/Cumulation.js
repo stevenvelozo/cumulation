@@ -52,10 +52,7 @@ class Cumulation
 		let tmpRequestOptions = (
 		{
 			url: tmpURL,
-			headers:
-			{
-				cookie: ''
-			}
+			headers: this._Dependencies.underscore.extend({cookie: ''}, this._Settings.Headers)
 		});
 
 		let tmpCookies = [];
@@ -117,10 +114,7 @@ class Cumulation
 		let tmpRequestOptions = (
 		{
 			url: tmpURL,
-			headers:
-			{
-				cookie: ''
-			},
+			headers: this._Dependencies.underscore.extend({cookie: ''}, this._Settings.Headers),
 			data: pRecordObject
 		});
 
@@ -183,10 +177,7 @@ class Cumulation
 		let tmpRequestOptions = (
 		{
 			url: tmpURL,
-			headers:
-			{
-				cookie: ''
-			},
+			headers: this._Dependencies.underscore.extend({cookie: ''}, this._Settings.Headers),
 			data: pRecordObject
 		});
 
@@ -249,10 +240,7 @@ class Cumulation
 		let tmpRequestOptions = (
 		{
 			url: tmpURL,
-			headers:
-			{
-				cookie: ''
-			}
+			headers: this._Dependencies.underscore.extend({cookie: ''}, this._Settings.Headers)
 		});
 
 		let tmpCookies = [];
