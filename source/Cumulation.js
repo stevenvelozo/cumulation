@@ -162,7 +162,7 @@ class Cumulation
 	};
 	putRecord (pRecordObject, fCallback)
 	{
-		this.puttRecordToServer(pRecordObject, fCallback);
+		this.putRecordToServer(pRecordObject, fCallback);
 	};
 	
 	/**
@@ -223,9 +223,9 @@ class Cumulation
 					});
 			});
 	};
-	putRecord (pRecordObject, fCallback)
+	postRecord (pRecordObject, fCallback)
 	{
-		this.puttRecordToServer(pRecordObject, fCallback);
+		this.postRecordToServer(pRecordObject, fCallback);
 	};
 		
 	/**
