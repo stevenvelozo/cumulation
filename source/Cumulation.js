@@ -63,7 +63,7 @@ class Cumulation
 		tmpRequestOptions.headers.cookie = tmpCookies.join(';');
 
 		if (this._Settings.DebugLog)
-			this._Log.debug(`Beginning request`,tmpRequestOptions);
+			this._Log.debug(`Beginning GET request`,tmpRequestOptions);
 		let tmpRequestTime = this._Log.getTimeStamp();
 
 		this._Dependencies.simpleget.get(tmpRequestOptions, (pError, pResponse)=>
@@ -73,14 +73,14 @@ class Cumulation
 					return tmpCallBack(pError);
 				}
 				if (this._Settings.DebugLog)
-					this._Log.debug(`--> connected in ${this._Log.getTimeDelta(tmpRequestTime)}ms code ${pResponse.statusCode}`);
+					this._Log.debug(`--> GET connected in ${this._Log.getTimeDelta(tmpRequestTime)}ms code ${pResponse.statusCode}`);
 
 				let tmpData = '';
 
 				pResponse.on('data', (pChunk)=>
 					{
 						if (this._Settings.DebugLog)
-							this._Log.debug(`--> data chunk size ${pChunk.length}b received in ${this._Log.getTimeDelta(tmpRequestTime)}ms`);
+							this._Log.debug(`--> GET data chunk size ${pChunk.length}b received in ${this._Log.getTimeDelta(tmpRequestTime)}ms`);
 						tmpData += pChunk;
 					});
 
@@ -91,7 +91,7 @@ class Cumulation
 							tmpResult = JSON.parse(tmpData);
 						if (this._Settings.DebugLog)
 						{
-							this._Log.debug(`==> completed data size ${tmpData.length}b received in ${this._Log.getTimeDelta(tmpRequestTime)}ms`,tmpResult);
+							this._Log.debug(`==> GET completed data size ${tmpData.length}b received in ${this._Log.getTimeDelta(tmpRequestTime)}ms`,tmpResult);
 						}
 						tmpCallBack(pError, tmpResult);
 					});
@@ -101,7 +101,69 @@ class Cumulation
 	{
 		this.getRecordFromServer(pRecordID, fCallback);
 	};
-	
+
+	/**
+	 * 
+	 * GET RECORDS (plural)
+	 * 
+	**/
+	getRecordsFromServer (pRecordsString, fCallback)
+	{
+		let tmpCallBack = (typeof(fCallback) === 'function') ? fCallback : ()=>{};
+		let tmpURL = this._Settings.Server+this._Settings.Entity+'s/'+pRecordsString;
+		let tmpRequestOptions = (
+		{
+			url: tmpURL,
+			headers: JSON.parse(JSON.stringify(this._Settings.Headers))
+		});
+
+		let tmpCookies = [];
+		Object.keys(this._Settings.Cookies).forEach((pKey)=>
+			{
+				tmpCookies.push(this._Dependencies.cookie.serialize(pKey, this._Settings.Cookies[pKey]));
+			});
+		if (tmpCookies.length > 0)
+			tmpRequestOptions.headers.cookie = tmpCookies.join(';');
+
+		if (this._Settings.DebugLog)
+			this._Log.debug(`Beginning GET plural request`,tmpRequestOptions);
+		let tmpRequestTime = this._Log.getTimeStamp();
+
+		this._Dependencies.simpleget.get(tmpRequestOptions, (pError, pResponse)=>
+			{
+				if (pError)
+				{
+					return tmpCallBack(pError);
+				}
+				if (this._Settings.DebugLog)
+					this._Log.debug(`--> GET plural connected in ${this._Log.getTimeDelta(tmpRequestTime)}ms code ${pResponse.statusCode}`);
+
+				let tmpData = '';
+
+				pResponse.on('data', (pChunk)=>
+					{
+						if (this._Settings.DebugLog)
+							this._Log.debug(`--> GET plural data chunk size ${pChunk.length}b received in ${this._Log.getTimeDelta(tmpRequestTime)}ms`);
+						tmpData += pChunk;
+					});
+
+				pResponse.on('end', ()=>
+					{
+						let tmpResult = null;
+						if (tmpData)
+							tmpResult = JSON.parse(tmpData);
+						if (this._Settings.DebugLog)
+						{
+							this._Log.debug(`==> GET plural completed data size ${tmpData.length}b received in ${this._Log.getTimeDelta(tmpRequestTime)}ms`,tmpResult);
+						}
+						tmpCallBack(pError, tmpResult);
+					});
+			});
+	};
+	getRecords (pRecordsString, fCallback)
+	{
+		this.getRecordsFromServer(pRecordsString, fCallback);
+	};	
 	/**
 	 * 
 	 * PUT RECORD
@@ -114,7 +176,7 @@ class Cumulation
 		let tmpRequestOptions = (
 		{
 			url: tmpURL,
-			headers: this._Dependencies.underscore.extend({cookie: ''}, this._Settings.Headers),
+			headers: JSON.parse(JSON.stringify(this._Settings.Headers)),
 			data: pRecordObject
 		});
 
@@ -123,10 +185,11 @@ class Cumulation
 			{
 				tmpCookies.push(this._Dependencies.cookie.serialize(pKey, this._Settings.Cookies[pKey]));
 			});
-		tmpRequestOptions.headers.cookie = tmpCookies.join(';');
+		if (tmpCookies.length > 0)
+			tmpRequestOptions.headers.cookie = tmpCookies.join(';');
 
 		if (this._Settings.DebugLog)
-			this._Log.debug(`Beginning request`,tmpRequestOptions);
+			this._Log.debug(`Beginning PUT request`,tmpRequestOptions);
 		let tmpRequestTime = this._Log.getTimeStamp();
 
 		this._Dependencies.simpleget.put(tmpRequestOptions, (pError, pResponse)=>
@@ -136,14 +199,14 @@ class Cumulation
 					return tmpCallBack(pError);
 				}
 				if (this._Settings.DebugLog)
-					this._Log.debug(`--> connected in ${this._Log.getTimeDelta(tmpRequestTime)}ms code ${pResponse.statusCode}`);
+					this._Log.debug(`--> PUT connected in ${this._Log.getTimeDelta(tmpRequestTime)}ms code ${pResponse.statusCode}`);
 
 				let tmpData = '';
 
 				pResponse.on('data', (pChunk)=>
 					{
 						if (this._Settings.DebugLog)
-							this._Log.debug(`--> data chunk size ${pChunk.length}b received in ${this._Log.getTimeDelta(tmpRequestTime)}ms`);
+							this._Log.debug(`--> PUT data chunk size ${pChunk.length}b received in ${this._Log.getTimeDelta(tmpRequestTime)}ms`);
 						tmpData += pChunk;
 					});
 
@@ -154,7 +217,7 @@ class Cumulation
 							tmpResult = JSON.parse(tmpData);
 						if (this._Settings.DebugLog)
 						{
-							this._Log.debug(`==> completed data size ${tmpData.length}b received in ${this._Log.getTimeDelta(tmpRequestTime)}ms`,tmpResult);
+							this._Log.debug(`==> PUT completed data size ${tmpData.length}b received in ${this._Log.getTimeDelta(tmpRequestTime)}ms`,tmpResult);
 						}
 						tmpCallBack(pError, tmpResult);
 					});
@@ -177,7 +240,7 @@ class Cumulation
 		let tmpRequestOptions = (
 		{
 			url: tmpURL,
-			headers: this._Dependencies.underscore.extend({cookie: ''}, this._Settings.Headers),
+			headers: JSON.parse(JSON.stringify(this._Settings.Headers)),
 			data: pRecordObject
 		});
 
@@ -186,10 +249,11 @@ class Cumulation
 			{
 				tmpCookies.push(this._Dependencies.cookie.serialize(pKey, this._Settings.Cookies[pKey]));
 			});
-		tmpRequestOptions.headers.cookie = tmpCookies.join(';');
+		if (tmpCookies.length > 0)
+			tmpRequestOptions.headers.cookie = tmpCookies.join(';');
 
 		if (this._Settings.DebugLog)
-			this._Log.debug(`Beginning request`,tmpRequestOptions);
+			this._Log.debug(`Beginning POST request`,tmpRequestOptions);
 		let tmpRequestTime = this._Log.getTimeStamp();
 
 		this._Dependencies.simpleget.post(tmpRequestOptions, (pError, pResponse)=>
@@ -199,14 +263,14 @@ class Cumulation
 					return tmpCallBack(pError);
 				}
 				if (this._Settings.DebugLog)
-					this._Log.debug(`--> connected in ${this._Log.getTimeDelta(tmpRequestTime)}ms code ${pResponse.statusCode}`);
+					this._Log.debug(`--> POST connected in ${this._Log.getTimeDelta(tmpRequestTime)}ms code ${pResponse.statusCode}`);
 
 				let tmpData = '';
 
 				pResponse.on('data', (pChunk)=>
 					{
 						if (this._Settings.DebugLog)
-							this._Log.debug(`--> data chunk size ${pChunk.length}b received in ${this._Log.getTimeDelta(tmpRequestTime)}ms`);
+							this._Log.debug(`--> POST data chunk size ${pChunk.length}b received in ${this._Log.getTimeDelta(tmpRequestTime)}ms`);
 						tmpData += pChunk;
 					});
 
@@ -217,7 +281,7 @@ class Cumulation
 							tmpResult = JSON.parse(tmpData);
 						if (this._Settings.DebugLog)
 						{
-							this._Log.debug(`==> completed data size ${tmpData.length}b received in ${this._Log.getTimeDelta(tmpRequestTime)}ms`,tmpResult);
+							this._Log.debug(`==> POST completed data size ${tmpData.length}b received in ${this._Log.getTimeDelta(tmpRequestTime)}ms`,tmpResult);
 						}
 						tmpCallBack(pError, tmpResult);
 					});
@@ -240,7 +304,7 @@ class Cumulation
 		let tmpRequestOptions = (
 		{
 			url: tmpURL,
-			headers: this._Dependencies.underscore.extend({cookie: ''}, this._Settings.Headers)
+			headers: JSON.parse(JSON.stringify(this._Settings.Headers))
 		});
 
 		let tmpCookies = [];
@@ -248,10 +312,11 @@ class Cumulation
 			{
 				tmpCookies.push(this._Dependencies.cookie.serialize(pKey, this._Settings.Cookies[pKey]));
 			});
-		tmpRequestOptions.headers.cookie = tmpCookies.join(';');
+		if (tmpCookies.length > 0)
+			tmpRequestOptions.headers.cookie = tmpCookies.join(';');
 
 		if (this._Settings.DebugLog)
-			this._Log.debug(`Beginning request`,tmpRequestOptions);
+			this._Log.debug(`Beginning DELETE request`,tmpRequestOptions);
 		let tmpRequestTime = this._Log.getTimeStamp();
 
 		this._Dependencies.simpleget.delete(tmpRequestOptions, (pError, pResponse)=>
@@ -261,14 +326,14 @@ class Cumulation
 					return tmpCallBack(pError);
 				}
 				if (this._Settings.DebugLog)
-					this._Log.debug(`--> connected in ${this._Log.getTimeDelta(tmpRequestTime)}ms code ${pResponse.statusCode}`);
+					this._Log.debug(`--> DELETE connected in ${this._Log.getTimeDelta(tmpRequestTime)}ms code ${pResponse.statusCode}`);
 
 				let tmpData = '';
 
 				pResponse.on('data', (pChunk)=>
 					{
 						if (this._Settings.DebugLog)
-							this._Log.debug(`--> data chunk size ${pChunk.length}b received in ${this._Log.getTimeDelta(tmpRequestTime)}ms`);
+							this._Log.debug(`--> DELETE data chunk size ${pChunk.length}b received in ${this._Log.getTimeDelta(tmpRequestTime)}ms`);
 						tmpData += pChunk;
 					});
 
@@ -279,7 +344,7 @@ class Cumulation
 							tmpResult = JSON.parse(tmpData);
 						if (this._Settings.DebugLog)
 						{
-							this._Log.debug(`==> completed data size ${tmpData.length}b received in ${this._Log.getTimeDelta(tmpRequestTime)}ms`,tmpResult);
+							this._Log.debug(`==> DELETE completed data size ${tmpData.length}b received in ${this._Log.getTimeDelta(tmpRequestTime)}ms`,tmpResult);
 						}
 						tmpCallBack(pError, tmpResult);
 					});
