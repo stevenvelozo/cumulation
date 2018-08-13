@@ -5,7 +5,6 @@
 ```
 gulp minified
 gulp debug
-```
 
 (or)
 
