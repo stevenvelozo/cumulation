@@ -16,7 +16,6 @@ class Cumulation
 		this._Dependencies.async = require('async');
 		this._Dependencies.underscore = require('underscore');
 		this._Dependencies.moment = require('moment');
-		this._Dependencies.localforage = require('localforage');
 		this._Dependencies.simpleget = require('simple-get');
 		this._Dependencies.cookie = require('cookie');
 		this._Dependencies.matilde = require('matilde');
