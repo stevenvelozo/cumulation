@@ -172,7 +172,7 @@ class Cumulation
 	putRecordToServer (pRecordObject, fCallback)
 	{
 		let tmpCallBack = (typeof(fCallback) === 'function') ? fCallback : ()=>{};
-		let tmpURL = this._Settings.Server+this._Settings.Entity+'/';
+		let tmpURL = this._Settings.Server+this._Settings.Entity;
 		let tmpRequestOptions = (
 		{
 			url: tmpURL,
@@ -236,7 +236,7 @@ class Cumulation
 	postRecordToServer (pRecordObject, fCallback)
 	{
 		let tmpCallBack = (typeof(fCallback) === 'function') ? fCallback : ()=>{};
-		let tmpURL = this._Settings.Server+this._Settings.Entity+'/';
+		let tmpURL = this._Settings.Server+this._Settings.Entity;
 		let tmpRequestOptions = (
 		{
 			url: tmpURL,
