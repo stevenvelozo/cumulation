@@ -19,12 +19,15 @@ class Cumulation
 		this._Dependencies.simpleget = require('simple-get');
 		this._Dependencies.cookie = require('cookie');
 		this._Dependencies.matilde = require('matilde');
+		this._Dependencies.cumulation = this;
 
 		this._Settings = this._Dependencies.underscore.extend(JSON.parse(JSON.stringify(require('./Cumulation-Settings-Default.js'))), pSettings);
 
 		// This has behaviors similar to bunyan, for consistency
 		this._Log = new (require('./Cumulation-Log.js'))(this._Dependencies, this._Settings);
 		this.log = this._Log;
+
+		this.graph = new (require('./graph/Cumulation-GraphGet.js'))(this);
 	}
 
 	parseFilter (pFilter)
@@ -106,10 +109,10 @@ class Cumulation
 	 * GET RECORDS (plural)
 	 * 
 	**/
-	getRecordsFromServer (pRecordsString, fCallback)
+	getRecordsFromServerGeneric (pEntity, pRecordsString, fCallback)
 	{
 		let tmpCallBack = (typeof(fCallback) === 'function') ? fCallback : ()=>{};
-		let tmpURL = this._Settings.Server+this._Settings.Entity+'s/'+pRecordsString;
+		let tmpURL = this._Settings.Server+pEntity+'s/'+pRecordsString;
 		let tmpRequestOptions = (
 		{
 			url: tmpURL,
@@ -153,11 +156,16 @@ class Cumulation
 							tmpResult = JSON.parse(tmpData);
 						if (this._Settings.DebugLog)
 						{
-							this._Log.debug(`==> GET plural completed data size ${tmpData.length}b received in ${this._Log.getTimeDelta(tmpRequestTime)}ms`,tmpResult);
+							//this._Log.debug(`==> GET plural completed data size ${tmpData.length}b received in ${this._Log.getTimeDelta(tmpRequestTime)}ms`,tmpResult);
+							this._Log.debug(`==> GET plural completed data size ${tmpData.length}b (${tmpResult.length} records) received in ${this._Log.getTimeDelta(tmpRequestTime)}ms`);
 						}
 						tmpCallBack(pError, tmpResult);
 					});
 			});
+	};
+	getRecordsFromServer(pRecordsString, fCallback)
+	{
+		this.getRecordsFromServerGeneric(this._Settings.Entity, pRecordsString, fCallback);
 	};
 	getRecords (pRecordsString, fCallback)
 	{
