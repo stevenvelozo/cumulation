@@ -163,7 +163,7 @@ class GraphGet
 						if (tmpValidFilters.hasOwnProperty(pFilterProperty))
 						{
 							this.log.warning(`[${pEntityName}]  > Filter Property is Already Set to Join for ${pFilterProperty} but there also exists a column in the record.. defaulting to the column.`);
-							this.tmpValidFilters[pFilterProperty].Type = 'InRecord';
+							tmpValidFilters[pFilterProperty].Type = 'InRecord';
 						}
 						else
 						{
