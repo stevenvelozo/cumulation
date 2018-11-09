@@ -1,6 +1,6 @@
 var libCum = require('./source/Cumulation.js');
 
-var _UserSession = 'SES0x59bd610c7b000000';
+var _UserSession = '';
 
 var _DataModel = require('/Pavia/headlight_model/json/Headlight-Extended.json')
 
@@ -16,14 +16,14 @@ var _MaterialStorage = new libCum({
     }
 });
 //_MaterialStorage.graph.get("Material", {IDCustomer:10, Name:'Smith', IDMixSpecification:5, IDLab:[10,20], IDOrganization:10},
-_MaterialStorage.graph.get("Material", {IDCustomer:10, Name:'Smith', IDMixSpecification:7, IDLab:[159,13], IDOrganization:17211},
+_MaterialStorage.graph.get("Material", {IDCustomer:10, Name:'Smith', IDMixSpecification:2, IDLab:[129], IDOrganization:16419, HINTS:{IDLab: ['LabMaterialAssignment','LabTestApproval']}},
     (pError, pData)=>
     {
         if (pError)
         {
             _MaterialStorage.log.error(`Error getting entity records via graph connections: ${pError}`);
         }
-        //_MaterialStorage.log.info(JSON.stringify(pData));
+        _MaterialStorage.log.info(JSON.stringify(pData));
     });
 
 /*

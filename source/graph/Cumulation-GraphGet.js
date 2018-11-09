@@ -192,6 +192,14 @@ class GraphGet
 			this.log.debug(`[${pEntityName}] Beginning to graph GET a set of records based on some filter criteria`,pFilterObject);
 		let tmpGraphGetTime = this.log.getTimeStamp();
 
+		let tmpGraphHints = {};
+
+		if (pFilterObject.hasOwnProperty('HINTS'))
+		{
+			tmpGraphHints = pFilterObject.HINTS;
+			delete pFilterObject.HINTS;
+		}
+
 		this._Dependencies.async.waterfall(
 			[
 				(fStageComplete)=>
@@ -266,22 +274,37 @@ class GraphGet
 						{
 							this.log.debug(`[${pEntityName}] Determining best Join for filter: ${tmpFilter.Filter}`);
 							// We want to find the join with the most synergy, without going over.
+							let tmpSatisfyingHintValue = 1000;
 							let tmpSatisfyingJoinValue = -1;
 							let tmpSatisfyingJoinColumnCount = -1;
 							let tmpSatisfyingJoin = false;
 							for (let i = 0; i < tmpFilter.ValidJoins.length; i++)
 							{
 								this.log.debug(`[${pEntityName}] ... testing ${tmpFilter.ValidJoins[i]}`);
-								// If there are more common connections for this than the others, use it.
-								// Check for the most joined to table.  If there is a tie use one with the least columns joined in.
-								if ((tmpJoinedEntityCounts[tmpFilter.ValidJoins[i]] > tmpSatisfyingJoinValue) ||
+								// Check the graph hints to see if they are lower.
+								let tmpFilterGraphHintValue = 1000;
+								if (tmpGraphHints.hasOwnProperty(tmpFilter.Filter))
+								{
+									for (let k = 0; k < tmpGraphHints[tmpFilter.Filter].length; k++)
+									{
+										if (tmpGraphHints[tmpFilter.Filter][k] == tmpFilter.ValidJoins[i])
+											tmpFilterGraphHintValue = k;
+									}
+								}
+
+								// Check if the hints specify this is the most importants
+								if ((tmpFilterGraphHintValue < tmpSatisfyingHintValue) ||
+									// OR If there are more common connections for this than the others, use it.
+									(tmpJoinedEntityCounts[tmpFilter.ValidJoins[i]] > tmpSatisfyingJoinValue) ||
+									// OR Check for the most joined to table.  If there is a tie use one with the least columns joined in.
 									((tmpJoinedEntityCounts[tmpFilter.ValidJoins[i]] == tmpSatisfyingJoinValue) && (Object.keys(this._EntityIncomingConnectionMap[tmpFilter.ValidJoins[i]]).length > tmpSatisfyingJoinColumnCount)))
 								{
-									this.log.debug(`[${pEntityName}]     > ${tmpFilter.ValidJoins[i]} satisfies the criteria best to be used (so far)`);
-									tmpSatisfyingJoinValue = tmpJoinedEntityCounts[tmpFilter.Entity];
+									tmpSatisfyingHintValue = tmpFilterGraphHintValue;
+									tmpSatisfyingJoinValue = tmpJoinedEntityCounts[tmpFilter.ValidJoins[i]];
 									// Get the column count for this join
 									tmpSatisfyingJoinColumnCount = Object.keys(this._EntityIncomingConnectionMap[tmpFilter.ValidJoins[i]]).length;
 									tmpSatisfyingJoin = tmpFilter.ValidJoins[i];
+									this.log.debug(`[${pEntityName}] (hint ${tmpSatisfyingHintValue}, entitycount ${tmpSatisfyingJoinValue}, joincount ${tmpSatisfyingJoinColumnCount})    > ${tmpSatisfyingJoin} satisfies the criteria best to be used (so far)`);
 								}
 							}
 							this.log.debug(`[${pEntityName}] Adding ${tmpFilter.Filter} as a Join to ${tmpSatisfyingJoin}.`);
@@ -435,7 +458,7 @@ class GraphGet
 
 				this.log.debug(`[${pEntityName}] Graph Filter operation completed in ${this.log.getTimeDelta(tmpGraphGetTime)}ms`);
 
-				fCallback(pError, pJoinedDataSets);
+				fCallback(pError, pRecords);
 			});
 	};
 };
