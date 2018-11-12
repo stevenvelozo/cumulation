@@ -8,4 +8,5 @@
 */
 
 // Load the cumulation module into the browser global automatically.
-module.exports = require('./Cumulation.js');
+window.Cumulation = require('./Cumulation.js')
+module.exports = window.Cumulation;
