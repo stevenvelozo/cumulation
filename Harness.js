@@ -16,7 +16,17 @@ var _MaterialStorage = new libCum({
     }
 });
 //_MaterialStorage.graph.get("Material", {IDCustomer:10, Name:'Smith', IDMixSpecification:5, IDLab:[10,20], IDOrganization:10},
-_MaterialStorage.graph.get("Material", {IDCustomer:10, Name:'Smith', IDMixSpecification:2, IDLab:[129], IDOrganization:16419, HINTS:{IDLab: ['LabMaterialAssignment','LabTestApproval']}},
+// _MaterialStorage.graph.get("Material", {IDCustomer:10, Name:'Smith', IDMixSpecification:2, IDLab:[129], IDOrganization:16419, HINTS:{IDLab: ['LabMaterialAssignment','LabTestApproval']}},
+//     (pError, pData)=>
+//     {
+//         if (pError)
+//         {
+//             _MaterialStorage.log.error(`Error getting entity records via graph connections: ${pError}`);
+//         }
+//         _MaterialStorage.log.info(JSON.stringify(pData));
+//     });
+
+ _MaterialStorage.graph.get("Test", {"IDProject": 1125, "IDSample": 13797, "IDLab": 90, IGNORES: {IDProject: true}, HINTS:{ IDLab: ['TestLabJoin']}},
     (pError, pData)=>
     {
         if (pError)
@@ -25,7 +35,6 @@ _MaterialStorage.graph.get("Material", {IDCustomer:10, Name:'Smith', IDMixSpecif
         }
         _MaterialStorage.log.info(JSON.stringify(pData));
     });
-
 /*
 // Get a list of records
 var _SampleLogStorage = new libCum({

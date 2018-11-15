@@ -193,6 +193,13 @@ class GraphGet
 		let tmpGraphGetTime = this.log.getTimeStamp();
 
 		let tmpGraphHints = {};
+		let tmpGraphIgnores = {};
+		
+		if (pFilterObject.hasOwnProperty('IGNORES'))
+		{
+			tmpGraphIgnores = pFilterObject.IGNORES;
+			delete pFilterObject.IGNORES;
+		}
 
 		if (pFilterObject.hasOwnProperty('HINTS'))
 		{
@@ -254,62 +261,72 @@ class GraphGet
 					for (let pFilterProperty in pValidFilters)
 					{
 						let tmpFilter = pValidFilters[pFilterProperty];
-
-						if (tmpFilter.Type == 'InRecord')
+						
+						if (tmpGraphIgnores[pFilterProperty])
 						{
-							this.log.debug(`[${pEntityName}] Adding ${tmpFilter.Filter} as InRecord.`);
-							tmpFinalFilters.push(tmpFilter);
+							this.log.debug(`[${pEntityName}] Ignoring potential filter ${pFilterProperty} because it is in the ignores.`);
 						}
-						if ((tmpFilter.Type == 'Join') && (!tmpFilter.ValidJoins || tmpFilter.ValidJoins.length < 1))
+						else
 						{
-							this.log.debug(`[${pEntityName}] There was an attempt to join to ${tmpFilter.Filter} but no valid joins exist.  Ignoring filter.`);
-						}
-						else if ((tmpFilter.Type == 'Join') && (tmpFilter.ValidJoins.length == 1))
-						{
-							this.log.debug(`[${pEntityName}] Adding ${tmpFilter.Filter} as a Join to ${pFilterObject.ValidJoins[0]}.`);
-							tmpFilter.SatisfyingJoin = pFilterObject.ValidJoins[0];
-							this.tmpFinalFilters.push(tmpFilter);
-						}
-						else if ((tmpFilter.Type == 'Join') && (tmpFilter.ValidJoins.length > 1))
-						{
-							this.log.debug(`[${pEntityName}] Determining best Join for filter: ${tmpFilter.Filter}`);
-							// We want to find the join with the most synergy, without going over.
-							let tmpSatisfyingHintValue = 1000;
-							let tmpSatisfyingJoinValue = -1;
-							let tmpSatisfyingJoinColumnCount = -1;
-							let tmpSatisfyingJoin = false;
-							for (let i = 0; i < tmpFilter.ValidJoins.length; i++)
+							if (tmpFilter.Type == 'InRecord')
 							{
-								this.log.debug(`[${pEntityName}] ... testing ${tmpFilter.ValidJoins[i]}`);
-								// Check the graph hints to see if they are lower.
-								let tmpFilterGraphHintValue = 1000;
-								if (tmpGraphHints.hasOwnProperty(tmpFilter.Filter))
-								{
-									for (let k = 0; k < tmpGraphHints[tmpFilter.Filter].length; k++)
+								this.log.debug(`[${pEntityName}] Adding ${tmpFilter.Filter} as InRecord.`);
+								tmpFinalFilters.push(tmpFilter);
+							}
+							if ((tmpFilter.Type == 'Join') && (!tmpFilter.ValidJoins || tmpFilter.ValidJoins.length < 1))
+							{
+								this.log.debug(`[${pEntityName}] There was an attempt to join to ${tmpFilter.Filter} but no valid joins exist.  Ignoring filter.`);
+							}
+							else if ((tmpFilter.Type == 'Join') && (tmpFilter.ValidJoins.length == 1))
+							{
+								this.log.debug(`[${pEntityName}] Adding ${tmpFilter.Filter} as a Join to ${pFilterObject.ValidJoins[0]}.`);
+								tmpFilter.SatisfyingJoin = pFilterObject.ValidJoins[0];
+								this.tmpFinalFilters.push(tmpFilter);
+							}
+							else if ((tmpFilter.Type == 'Join') && (tmpFilter.ValidJoins.length > 1))
+							{
+								this.log.debug(`[${pEntityName}] Determining best Join for filter: ${tmpFilter.Filter}`);
+								// We want to find the join with the most synergy, without going over.
+								let tmpSatisfyingHintValue = 1000;
+								let tmpSatisfyingJoinValue = -1;
+								let tmpSatisfyingJoinColumnCount = -1;
+								let tmpSatisfyingJoin = false;
+								for (let i = 0; i < tmpFilter.ValidJoins.length; i++)
+								{								// Check the graph hints to see if they are lower.
+									let tmpFilterGraphHintValue = 1000;
+									this.log.debug(`[${pEntityName}] ... testing ${tmpFilter.ValidJoins[i]}`);
+									if (tmpGraphHints.hasOwnProperty(tmpFilter.Filter))
 									{
-										if (tmpGraphHints[tmpFilter.Filter][k] == tmpFilter.ValidJoins[i])
-											tmpFilterGraphHintValue = k;
+										for (let k = 0; k < tmpGraphHints[tmpFilter.Filter].length; k++)
+										{
+											if (tmpGraphHints[tmpFilter.Filter][k] == tmpFilter.ValidJoins[i])
+												tmpFilterGraphHintValue = k;
+										}
+									}
+	
+									// Bail out early if there is a hinted selection already in the chain
+									if (tmpFilterGraphHintValue > tmpSatisfyingHintValue)
+									{
+										this.log.debug(`[${pEntityName}] ${tmpFilter.ValidJoins[i]} (hint ${tmpSatisfyingHintValue}, entitycount ${tmpSatisfyingJoinValue}, joincount ${tmpSatisfyingJoinColumnCount})    > ${tmpSatisfyingJoin} is being skipped due to hinting.`);
+									}
+									else if ((tmpFilterGraphHintValue <= tmpSatisfyingHintValue) ||
+										//If there are more common connections for this than the others, use it.
+										(tmpJoinedEntityCounts[tmpFilter.ValidJoins[i]] > tmpSatisfyingJoinValue) ||
+										// OR Check for the most joined to table.  If there is a tie use one with the least columns joined in.
+										((tmpJoinedEntityCounts[tmpFilter.ValidJoins[i]] == tmpSatisfyingJoinValue) && (Object.keys(this._EntityIncomingConnectionMap[tmpFilter.ValidJoins[i]]).length > tmpSatisfyingJoinColumnCount)))
+									{
+										tmpSatisfyingHintValue = tmpFilterGraphHintValue;
+										tmpSatisfyingJoinValue = tmpJoinedEntityCounts[tmpFilter.ValidJoins[i]];
+										// Get the column count for this join
+										tmpSatisfyingJoinColumnCount = Object.keys(this._EntityIncomingConnectionMap[tmpFilter.ValidJoins[i]]).length;
+										tmpSatisfyingJoin = tmpFilter.ValidJoins[i];
+										this.log.debug(`[${pEntityName}] (hint ${tmpSatisfyingHintValue}, entitycount ${tmpSatisfyingJoinValue}, joincount ${tmpSatisfyingJoinColumnCount})    > ${tmpSatisfyingJoin} satisfies the criteria best to be used (so far)`);
 									}
 								}
-
-								// Check if the hints specify this is the most importants
-								if ((tmpFilterGraphHintValue < tmpSatisfyingHintValue) ||
-									// OR If there are more common connections for this than the others, use it.
-									(tmpJoinedEntityCounts[tmpFilter.ValidJoins[i]] > tmpSatisfyingJoinValue) ||
-									// OR Check for the most joined to table.  If there is a tie use one with the least columns joined in.
-									((tmpJoinedEntityCounts[tmpFilter.ValidJoins[i]] == tmpSatisfyingJoinValue) && (Object.keys(this._EntityIncomingConnectionMap[tmpFilter.ValidJoins[i]]).length > tmpSatisfyingJoinColumnCount)))
-								{
-									tmpSatisfyingHintValue = tmpFilterGraphHintValue;
-									tmpSatisfyingJoinValue = tmpJoinedEntityCounts[tmpFilter.ValidJoins[i]];
-									// Get the column count for this join
-									tmpSatisfyingJoinColumnCount = Object.keys(this._EntityIncomingConnectionMap[tmpFilter.ValidJoins[i]]).length;
-									tmpSatisfyingJoin = tmpFilter.ValidJoins[i];
-									this.log.debug(`[${pEntityName}] (hint ${tmpSatisfyingHintValue}, entitycount ${tmpSatisfyingJoinValue}, joincount ${tmpSatisfyingJoinColumnCount})    > ${tmpSatisfyingJoin} satisfies the criteria best to be used (so far)`);
-								}
+								this.log.debug(`[${pEntityName}] Adding ${tmpFilter.Filter} as a Join to ${tmpSatisfyingJoin}.`);
+								tmpFilter.SatisfyingJoin = tmpSatisfyingJoin;
+								tmpFinalFilters.push(tmpFilter);
 							}
-							this.log.debug(`[${pEntityName}] Adding ${tmpFilter.Filter} as a Join to ${tmpSatisfyingJoin}.`);
-							tmpFilter.SatisfyingJoin = tmpSatisfyingJoin;
-							tmpFinalFilters.push(tmpFilter);
 						}
 					}
 
@@ -427,7 +444,7 @@ class GraphGet
 					{
 						let tmpJoinFilterString = pValidIdentities.join();
 						if (tmpJoinFilterString != '')
-							tmpURIFilter += `FBL~${tmpRecordIdentityColumn}~EQ~${tmpJoinFilterString}`;
+							tmpURIFilter += `FBL~${tmpRecordIdentityColumn}~INN~${tmpJoinFilterString}`;
 					}
 
 					pFinalFilters.forEach(
