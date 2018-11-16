@@ -279,9 +279,9 @@ class GraphGet
 							}
 							else if ((tmpFilter.Type == 'Join') && (tmpFilter.ValidJoins.length == 1))
 							{
-								this.log.debug(`[${pEntityName}] Adding ${tmpFilter.Filter} as a Join to ${pFilterObject.ValidJoins[0]}.`);
-								tmpFilter.SatisfyingJoin = pFilterObject.ValidJoins[0];
-								this.tmpFinalFilters.push(tmpFilter);
+								this.log.debug(`[${pEntityName}] Adding ${tmpFilter.Filter} as a Join to ${tmpFilter.ValidJoins[0]}.`);
+								tmpFilter.SatisfyingJoin = tmpFilter.ValidJoins[0];
+								tmpFinalFilters.push(tmpFilter);
 							}
 							else if ((tmpFilter.Type == 'Join') && (tmpFilter.ValidJoins.length > 1))
 							{

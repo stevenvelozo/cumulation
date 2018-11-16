@@ -1,6 +1,6 @@
 var libCum = require('./source/Cumulation.js');
 
-var _UserSession = '';
+var _UserSession = 'SES00xe46499401aa946a68296749c35229aac';
 
 var _DataModel = require('/Pavia/headlight_model/json/Headlight-Extended.json')
 
@@ -25,8 +25,9 @@ var _MaterialStorage = new libCum({
 //         }
 //         _MaterialStorage.log.info(JSON.stringify(pData));
 //     });
-
- _MaterialStorage.graph.get("Test", {"IDProject": 1125, "IDSample": 13797, "IDLab": 90, IGNORES: {IDProject: true}, HINTS:{ IDLab: ['TestLabJoin']}},
+    
+ _MaterialStorage.graph.get("TestInstance", { "IDSample": 13797, "IDLab": 90, IGNORES: {'IDLab': true} },
+//  _MaterialStorage.graph.get("Test", {"IDProject": 1125, "IDSample": 13797, "IDLab": 90, IGNORES: {IDProject: true}, HINTS:{ IDLab: ['TestLabJoin']}},
     (pError, pData)=>
     {
         if (pError)
