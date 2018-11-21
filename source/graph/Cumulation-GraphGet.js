@@ -126,7 +126,39 @@ class GraphGet
 		tmpProperties.forEach(
 			(pFilterProperty)=>
 			{
-				if (pFilterProperty.startsWith('ID') && 
+				if (typeof(pFilterObject[pFilterProperty]) === 'string')
+				{
+					// If the value is a string, do a potential LIKE expression
+					let tmpColumnContained = false;
+					// This isn't a join; check if this is a column contained in the Entity
+					// --> Abstract this .. maybe?  The string check is unique to this iteration.
+					for (let i = 0; i < tmpEntityTable.Columns.length; i++)
+						if ((tmpEntityTable.Columns[i].Column === pFilterProperty) && ((tmpEntityTable.Columns[i].DataType === 'String') || (tmpEntityTable.Columns[i].DataType === 'Text')))
+							tmpColumnContained = true;
+					// <-- End of Abstraction (repeated in stanza below)
+					if (tmpColumnContained)
+					{
+						if (tmpValidFilters.hasOwnProperty(pFilterProperty))
+						{
+							this.log.warning(`[${pEntityName}]  > Filter Property is Already Set for ${pFilterProperty} but there also exists a String column in the record.. defaulting to the column.`);
+							tmpValidFilters[pFilterProperty].Type = 'InRecordString';
+						}
+						else
+						{
+							tmpValidFilters[pFilterProperty] = (
+								{
+									Entity: pEntityName,
+									Filter: pFilterProperty,
+									Type: 'InRecordString',
+									Value: pFilterObject[pFilterProperty],
+									PotentialJoins: false
+								});
+							if (this._Settings.DebugLog)
+								this.log.debug(`[${pEntityName}]  > Filter Property Set to InRecordString for  ${pFilterProperty}.`);
+						}
+					}
+				}
+				else if (pFilterProperty.startsWith('ID') && 
 					(Number.isInteger(pFilterObject[pFilterProperty]) || Array.isArray(pFilterObject[pFilterProperty])))
 				{
 					let tmpEntity = pFilterProperty.substring(2);
@@ -207,6 +239,17 @@ class GraphGet
 			delete pFilterObject.HINTS;
 		}
 
+		let tmpPagingString = '0/2000'
+
+		if (pFilterObject.hasOwnProperty('PAGING'))
+		{
+			tmpPagingString = '';
+			tmpPagingString += (typeof(pFilterObject.PAGING.Page) !== 'undefined') ? pFilterObject.PAGING.Page : 0;
+			tmpPagingString += '/';
+			tmpPagingString += (typeof(pFilterObject.PAGING.PageSize) !== 'undefined') ? pFilterObject.PAGING.PageSize : 2000;
+			delete pFilterObject.PAGING;
+		}
+
 		this._Dependencies.async.waterfall(
 			[
 				(fStageComplete)=>
@@ -273,7 +316,12 @@ class GraphGet
 								this.log.debug(`[${pEntityName}] Adding ${tmpFilter.Filter} as InRecord.`);
 								tmpFinalFilters.push(tmpFilter);
 							}
-							if ((tmpFilter.Type == 'Join') && (!tmpFilter.ValidJoins || tmpFilter.ValidJoins.length < 1))
+							else if (tmpFilter.Type == 'InRecordString')
+							{
+								this.log.debug(`[${pEntityName}] Adding ${tmpFilter.Filter} as InRecordString.`);
+								tmpFinalFilters.push(tmpFilter);
+							}
+							else if ((tmpFilter.Type == 'Join') && (!tmpFilter.ValidJoins || tmpFilter.ValidJoins.length < 1))
 							{
 								this.log.debug(`[${pEntityName}] There was an attempt to join to ${tmpFilter.Filter} but no valid joins exist.  Ignoring filter.`);
 							}
@@ -424,7 +472,7 @@ class GraphGet
 				},
 				(pValidFilters, pFinalFilters, pJoinedDataSets, pValidIdentities, fStageComplete)=>
 				{
-					let tmpURIFilter = `FilteredTo/`;
+					let tmpURIFilter = ``;
 					let tmpRecordIdentityColumn = 'UNKNOWN';
 					let tmpEntityTable = this._DataModel.Tables[pEntityName];
 					for (let i = 0; i < tmpEntityTable.Columns.length; i++)
@@ -444,7 +492,7 @@ class GraphGet
 					{
 						let tmpJoinFilterString = pValidIdentities.join();
 						if (tmpJoinFilterString != '')
-							tmpURIFilter += `FBL~${tmpRecordIdentityColumn}~INN~${tmpJoinFilterString}`;
+							tmpURIFilter += `FilteredTo/FBL~${tmpRecordIdentityColumn}~INN~${tmpJoinFilterString}`;
 					}
 
 					pFinalFilters.forEach(
@@ -452,15 +500,26 @@ class GraphGet
 							{
 								if (pFilterProperty.Type == 'InRecord')
 								{
-									if (tmpURIFilter != 'FilteredTo/')
+									if (tmpURIFilter != '')
 										tmpURIFilter += '~';
+									else
+										tmpURIFilter += `FilteredTo/`;
 									tmpURIFilter += `FBV~${pFilterProperty.Filter}~EQ~${pFilterProperty.Value}`;
+								}
+								else if (pFilterProperty.Type == 'InRecordString')
+								{
+									if (tmpURIFilter != '')
+										tmpURIFilter += '~';
+									else
+										tmpURIFilter += `FilteredTo/`;
+									tmpURIFilter += `FBV~${pFilterProperty.Filter}~LK~${pFilterProperty.Value}`;
 								}
 							});
 
 
-
-					tmpURIFilter += `/0/10000`;
+					if (tmpURIFilter !== '')
+						tmpURIFilter += '/';
+					tmpURIFilter += tmpPagingString;
 					this._Dependencies.cumulation.getRecordsFromServerGeneric(pEntityName, tmpURIFilter,
 						(pError, pData)=>
 						{
@@ -475,7 +534,7 @@ class GraphGet
 
 				this.log.debug(`[${pEntityName}] Graph Filter operation completed in ${this.log.getTimeDelta(tmpGraphGetTime)}ms`);
 
-				fCallback(pError, pRecords);
+				fCallback(pError, pRecords, pValidFilters, pFinalFilters, pJoinedDataSets, pValidIdentities);
 			});
 	};
 };
