@@ -1,6 +1,6 @@
 var libCum = require('./source/Cumulation.js');
-
-var _UserSession = '';
+var _ = require('underscore');
+var _UserSession = 'SES00x3f5d7e44124c419e948cebb76828abc6';
 
 var _DataModel = require('/Pavia/headlight_model/json/Headlight-Extended.json')
 
@@ -25,18 +25,31 @@ var _MaterialStorage = new libCum({
 //         }
 //         _MaterialStorage.log.info(JSON.stringify(pData));
 //     });
-    
-// _MaterialStorage.graph.get("TestInstance", { "IDSample": 13797, "IDLab": 90, IGNORES: {'IDLab': true} },
-// _MaterialStorage.graph.get("Test", {"IDProject": 1125, "IDSample": 13797, "IDLab": 90, IGNORES: {IDProject: true}, HINTS:{ IDLab: ['TestLabJoin']}},
-_MaterialStorage.graph.get("Organization", { "Name": '%25Eagle%25'},
+
+ _MaterialStorage.graph.get("Test", {IGNORES: {IDProject: true, IDSample: true}, HINTS:{ IDLab: ['TestLabJoin']}, FILTERS:{"Test":"FBV~Name~EQ~T51-1"}},
+
+
     (pError, pData)=>
     {
         if (pError)
         {
             _MaterialStorage.log.error(`Error getting entity records via graph connections: ${pError}`);
         }
-        _MaterialStorage.log.info(JSON.stringify(pData));
+        _MaterialStorage.log.info(JSON.stringify( _.map(pData, 'IDTest') ) );
+        // var testsIDS = _.map(pData, 'IDTestInstance');
+        
+        //  _MaterialStorage.graph.get("Lab", { "IDTestInstance": testsIDS, HINTS: {'IDTestInstance': ['TestInstance'] } },
+        // (pError, pData)=>
+        // {
+        //     if (pError)
+        //     {
+        //         _MaterialStorage.log.error(`Error getting entity records via graph connections: ${pError}`);
+        //     }
+        //     _MaterialStorage.log.info(JSON.stringify(  _.map(pData, 'IDLab') ) );
+        // });
+        
     });
+    
 /*
 // Get a list of records
 var _SampleLogStorage = new libCum({

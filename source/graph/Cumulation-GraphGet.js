@@ -226,6 +226,7 @@ class GraphGet
 
 		let tmpGraphHints = {};
 		let tmpGraphIgnores = {};
+		let tmpFilterExtensions = {};
 		
 		if (pFilterObject.hasOwnProperty('IGNORES'))
 		{
@@ -237,6 +238,12 @@ class GraphGet
 		{
 			tmpGraphHints = pFilterObject.HINTS;
 			delete pFilterObject.HINTS;
+		}
+
+		if (pFilterObject.hasOwnProperty('FILTERS'))
+		{
+			tmpFilterExtensions = pFilterObject.FILTERS;
+			delete pFilterObject.FILTERS;
 		}
 
 		let tmpPagingString = '0/2000'
@@ -410,6 +417,13 @@ class GraphGet
 										tmpURIFilter += `FBV~${tmpCheckFilter.Filter}~EQ~${tmpCheckFilter.Value}`;
 								}
 							}
+							if (tmpFilterExtensions.hasOwnProperty(pFilter.SatisfyingJoin))
+							{
+								if (tmpURIFilter != 'FilteredTo/')
+									tmpURIFilter += '~';
+
+								tmpURIFilter += tmpFilterExtensions[pFilter.SatisfyingJoin];
+							}
 							tmpURIFilter += `/0/10000`;
 							this._Dependencies.cumulation.getRecordsFromServerGeneric(pFilter.SatisfyingJoin, tmpURIFilter,
 								(pError, pData)=>
@@ -515,6 +529,16 @@ class GraphGet
 									tmpURIFilter += `FBV~${pFilterProperty.Filter}~LK~${pFilterProperty.Value}`;
 								}
 							});
+
+					if (tmpFilterExtensions.hasOwnProperty(pEntityName))
+					{
+						if (tmpURIFilter != '')
+							tmpURIFilter += '~';
+						else
+							tmpURIFilter += `FilteredTo/`;
+
+						tmpURIFilter += tmpFilterExtensions[pEntityName];
+					}
 
 
 					if (tmpURIFilter !== '')
