@@ -411,8 +411,8 @@ class GraphGet
 									if (tmpURIFilter != 'FilteredTo/')
 										tmpURIFilter += '~';
 
-									if (Array.isArray(tmpCheckFilter))
-										tmpURIFilter += `FBV~${tmpCheckFilter.Filter}~EQ~${tmpCheckFilter.Value}`;
+									if (Array.isArray(tmpCheckFilter.Value))
+										tmpURIFilter += `FBL~${tmpCheckFilter.Filter}~INN~${tmpCheckFilter.Value}`;
 									else
 										tmpURIFilter += `FBV~${tmpCheckFilter.Filter}~EQ~${tmpCheckFilter.Value}`;
 								}
