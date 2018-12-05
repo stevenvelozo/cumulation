@@ -23,6 +23,8 @@ class GraphGet
 		this._DataModel = (typeof(this._Settings.DataModel) === 'object') ? this._Settings.DataModel : false;
 		// Map of joins (Entity->Other Possible Entities)
 		this._JoinMap = {};
+		// The masquerade ball where all the columns who really mean other entities
+		this._EntityMasquerade = {};
 		// Map of incoming connections for Entities
 		this._EntityIncomingConnectionMap = {};
 		this.unfoldJoins();
@@ -162,6 +164,17 @@ class GraphGet
 					(Number.isInteger(pFilterObject[pFilterProperty]) || Array.isArray(pFilterObject[pFilterProperty])))
 				{
 					let tmpEntity = pFilterProperty.substring(2);
+
+					/* TODO: Joins that aren't named what their entity is
+					for (let i = 0; i < tmpEntityTable.Columns.length; i++)
+					{
+						if ((tmpEntityTable.Columns[i].Column === pFilterProperty) && (tmpEntityTable.Columns[i].hasOwnProperty('Join') && tmpEntityTable.Columns[i].Join.length > 0))
+						{
+							this.log.debug(`[${pEntityName}] >>> Found hard-mapped join in the graph for: ${tmpEntityTable.Columns[i].Column} ---> ${tmpEntityTable.Columns[i].Join})...`);
+							tmpEntity = tmpEntityTable.Columns[i].Join.substring(2);
+						}
+					}
+					*/
 
 					// This is an ID, so parse it as a possible filter property
 					if (this._Settings.DebugLog)
@@ -518,7 +531,11 @@ class GraphGet
 										tmpURIFilter += '~';
 									else
 										tmpURIFilter += `FilteredTo/`;
-									tmpURIFilter += `FBV~${pFilterProperty.Filter}~EQ~${pFilterProperty.Value}`;
+									
+									if (Array.isArray(pFilterProperty.Value))
+										tmpURIFilter += `FBL~${pFilterProperty.Filter}~INN~${pFilterProperty.Value}`;
+									else
+										tmpURIFilter += `FBV~${pFilterProperty.Filter}~EQ~${pFilterProperty.Value}`;
 								}
 								else if (pFilterProperty.Type == 'InRecordString')
 								{

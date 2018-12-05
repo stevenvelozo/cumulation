@@ -1,6 +1,6 @@
 var libCum = require('./source/Cumulation.js');
 var _ = require('underscore');
-var _UserSession = 'SES00x3f5d7e44124c419e948cebb76828abc6';
+var _UserSession = 'SES00x88eaaca7d48b4c4eaa588dfae6400a14';
 
 var _DataModel = require('/Pavia/headlight_model/json/Headlight-Extended.json')
 
@@ -26,20 +26,17 @@ var _MaterialStorage = new libCum({
 //         _MaterialStorage.log.info(JSON.stringify(pData));
 //     });
 
- _MaterialStorage.graph.get("Test", {
-    "IDMaterial": 8685,
-    "IDLab": [
-        70,
-        60,
-        64,
-        65,
-        211
+ _MaterialStorage.graph.get("TestLabJoin", {
+    "IDMaterial": 8448,
+    "IDLabParent": [
+        57,
+        92
     ],
     "IDLineItem": [
-        104965
+        104964
     ],
     "HINTS": {
-        "IDLab": [
+        "IDLabParent": [
             "TestLabJoin"
         ]
     },
@@ -78,78 +75,3 @@ var _MaterialStorage = new libCum({
         // });
         
     });
-
- _MaterialStorage.graph.get("ProductionPlant", {
-    "IDOrganization": 17169,
-    "IDMaterial": 8395,
-    "HINTS": {
-        "IDOrganization": [
-            "Product"
-        ],
-        "IDMaterial": [
-            "Product"
-        ],
-        "IDProduct": [
-            "Product"
-        ]
-    },
-    "IGNORES": {}
-},
-
-
-    (pError, pData)=>
-    {
-        if (pError)
-        {
-            _MaterialStorage.log.error(`Error getting entity records via graph connections: ${pError}`);
-        }
-        // _MaterialStorage.log.info(JSON.stringify( _.map(pData, 'IDTest') ) );
-        _MaterialStorage.log.info( pData.length);
-        
-        // var testsIDS = _.map(pData, 'IDTestInstance');
-        
-        //  _MaterialStorage.graph.get("Lab", { "IDTestInstance": testsIDS, HINTS: {'IDTestInstance': ['TestInstance'] } },
-        // (pError, pData)=>
-        // {
-        //     if (pError)
-        //     {
-        //         _MaterialStorage.log.error(`Error getting entity records via graph connections: ${pError}`);
-        //     }
-        //     _MaterialStorage.log.info(JSON.stringify(  _.map(pData, 'IDLab') ) );
-        // });
-        
-    });
-    
-/*
-// Get a list of records
-var _SampleLogStorage = new libCum({
-	Server:'https://fieldbook.headlightqa.paviasystems.com/1.0/',
-    Entity:'SampleLog',
-    DataModel:_DataModel,
-    DebugLog: true,
-    Cookies:
-    {
-        'UserSession':_UserSession
-    }
-});
-_SampleLogStorage.getRecords("0/10", (pError, pData)=>
-{
-    _SampleLogStorage.log.info(Object.keys(pData));
-});
-
-// Get a single record
-var _MaterialStorage = new libCum({
-	Server:'https://fieldbook.headlightqa.paviasystems.com/1.0/',
-    Entity:'Material',
-    DataModel:_DataModel,
-    DebugLog:true,
-    Cookies:
-    {
-        'UserSession':_UserSession
-    }
-});
-_MaterialStorage.getRecord(5832, (pError, pData)=>
-{
-    _MaterialStorage.log.info(Object.keys(pData));
-});
-*/
