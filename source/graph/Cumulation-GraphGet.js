@@ -240,6 +240,8 @@ class GraphGet
 		let tmpGraphHints = {};
 		let tmpGraphIgnores = {};
 		let tmpFilterExtensions = {};
+		// Used for extended behavior modification
+		let tmpExtendedProperties = {};
 		
 		if (pFilterObject.hasOwnProperty('IGNORES'))
 		{
@@ -257,6 +259,12 @@ class GraphGet
 		{
 			tmpFilterExtensions = pFilterObject.FILTERS;
 			delete pFilterObject.FILTERS;
+		}
+		
+		if (pFilterObject.hasOwnProperty('PROPERTIES'))
+		{
+			tmpExtendedProperties = pFilterObject.PROPERTIES;
+			delete pFilterObject.PROPERTIES;
 		}
 
 		let tmpPagingString = '0/2000'
@@ -430,6 +438,8 @@ class GraphGet
 										tmpURIFilter += `FBV~${tmpCheckFilter.Filter}~EQ~${tmpCheckFilter.Value}`;
 								}
 							}
+
+							// Filter joins with forced filters
 							if (tmpFilterExtensions.hasOwnProperty(pFilter.SatisfyingJoin))
 							{
 								if (tmpURIFilter != 'FilteredTo/')
@@ -437,6 +447,8 @@ class GraphGet
 
 								tmpURIFilter += tmpFilterExtensions[pFilter.SatisfyingJoin];
 							}
+
+							// This is sick.  Fix it.
 							tmpURIFilter += `/0/10000`;
 							this._Dependencies.cumulation.getRecordsFromServerGeneric(pFilter.SatisfyingJoin, tmpURIFilter,
 								(pError, pData)=>
@@ -520,6 +532,12 @@ class GraphGet
 						let tmpJoinFilterString = pValidIdentities.join();
 						if (tmpJoinFilterString != '')
 							tmpURIFilter += `FilteredTo/FBL~${tmpRecordIdentityColumn}~INN~${tmpJoinFilterString}`;
+						else if (tmpExtendedProperties.ForceJoins)
+						{
+							this.log.debug(`[${pEntityName}] Force Joins is set to TRUE and there are no valid Join Records mapped in; set is empty.`);
+							// There are no filterable list of join filters
+							return fStageComplete(null, [], pValidFilters, pFinalFilters, pJoinedDataSets, pValidIdentities);
+						}
 					}
 
 					pFinalFilters.forEach(

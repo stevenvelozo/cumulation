@@ -26,19 +26,21 @@ var _MaterialStorage = new libCum({
 //         _MaterialStorage.log.info(JSON.stringify(pData));
 //     });
 
- _MaterialStorage.graph.get("TestLabJoin", {
-    "IDMaterial": 8448,
-    "IDLabParent": [
-        57,
-        92
-    ],
-    "IDLineItem": [
-        104964
+ _MaterialStorage.graph.get("Material", {
+    "IDSample": [
+        11118685,
+        8111687
+        //15048,
+        //15047
     ],
     "HINTS": {
         "IDLabParent": [
             "TestLabJoin"
         ]
+    },
+    "PROPERTIES":
+    {
+        "ForceJoins": true
     },
     "IGNORES": [
         "IDProject"
