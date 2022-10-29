@@ -18,7 +18,7 @@ class Cumulation
 		this._Dependencies.moment = require('moment');
 		this._Dependencies.simpleget = require('simple-get');
 		this._Dependencies.cookie = require('cookie');
-		this._Dependencies.matilde = require('matilde');
+		//this._Dependencies.matilde = require('matilde');
 		this._Dependencies.cumulation = this;
 
 		this._Settings = this._Dependencies.underscore.extend(JSON.parse(JSON.stringify(require('./Cumulation-Settings-Default.js'))), pSettings);
@@ -144,8 +144,6 @@ class Cumulation
 
 				pResponse.on('data', (pChunk)=>
 					{
-						if (this._Settings.DebugLog)
-							this._Log.debug(`--> GET plural data chunk size ${pChunk.length}b received in ${this._Log.getTimeDelta(tmpRequestTime)}ms`);
 						tmpData += pChunk;
 					});
 

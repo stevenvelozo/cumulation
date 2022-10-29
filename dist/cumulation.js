@@ -20675,8 +20675,6 @@ class Cumulation
 
 				pResponse.on('data', (pChunk)=>
 					{
-						if (this._Settings.DebugLog)
-							this._Log.debug(`--> GET plural data chunk size ${pChunk.length}b received in ${this._Log.getTimeDelta(tmpRequestTime)}ms`);
 						tmpData += pChunk;
 					});
 

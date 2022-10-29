@@ -6,6 +6,9 @@
   "scripts": {
     "start": "node source/Cumulation.js",
     "coverage": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha -- -u tdd -R spec",
+    "docker-dev-build-image": "docker build ./ -f Dockerfile_LUXURYCode -t retold/cumulation:local",
+    "docker-dev-run": "docker run -it -d --name cumulation-dev -p 127.0.0.1:12340:8080 -p 12306:3306 -p 8086:8086 -v \"$PWD/.config:/home/coder/.config\"  -v \"$PWD:/home/coder/cumulation\" -u \"$(id -u):$(id -g)\" -e \"DOCKER_USER=$USER\" retold/cumulation:local",
+    "docker-dev-run-with-library": "docker run -it -d --name cumulation-dev -p 127.0.0.1:12121:8080 -v \"$PWD/.config:/home/coder/.config\"  -v \"$PWD:/home/coder/retold-dev/cumulation\" -v \"$npm_config_library:/home/coder/retold-dev/library\" -u \"$(id -u):$(id -g)\" -e \"DOCKER_USER=$USER\" retold/cumulation:local",
     "test": "./node_modules/mocha/bin/_mocha -u tdd -R spec"
   },
   "repository": {
@@ -16,6 +19,24 @@
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/stevenvelozo/cumulation/issues"
+  },
+  "mocha": {
+    "diff": true,
+    "extension": [
+      "js"
+    ],
+    "package": "./package.json",
+    "reporter": "spec",
+    "slow": "75",
+    "timeout": "5000",
+    "ui": "tdd",
+    "watch-files": [
+      "source/**/*.js",
+      "test/**/*.js"
+    ],
+    "watch-ignore": [
+      "lib/vendor"
+    ]
   },
   "homepage": "https://github.com/stevenvelozo/cumulation#readme",
   "devDependencies": {
