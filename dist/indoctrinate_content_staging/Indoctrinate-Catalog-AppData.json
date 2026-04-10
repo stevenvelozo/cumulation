@@ -4,7 +4,7 @@
     ],
     "SourceContentCatalog": {
         "URI~CONTENT~FILE://Users/steven/Code/retold/modules/utility/cumulation/.config/code-server/config.yaml": {
-            "UUID": "7ed74ec5-e82c-422d-846a-e589bc6377d5",
+            "UUID": "c70eb303-d8db-4e91-91e7-74209c55f474",
             "Type": "URI",
             "Hash": "URI~CONTENT~FILE://Users/steven/Code/retold/modules/utility/cumulation/.config/code-server/config.yaml",
             "Path": "FILE://Users/steven/Code/retold/modules/utility/cumulation/.config/code-server/config.yaml",
@@ -42,7 +42,7 @@
             }
         },
         "URI~CONTENT~FILE://Users/steven/Code/retold/modules/utility/cumulation/.config/configstore/update-notifier-npm-check-updates.json": {
-            "UUID": "4f2c971d-2c0a-4f1d-85c1-2ffb3d06faf1",
+            "UUID": "220278fe-daad-42fc-84a7-1ab2fd862768",
             "Type": "URI",
             "Hash": "URI~CONTENT~FILE://Users/steven/Code/retold/modules/utility/cumulation/.config/configstore/update-notifier-npm-check-updates.json",
             "Path": "FILE://Users/steven/Code/retold/modules/utility/cumulation/.config/configstore/update-notifier-npm-check-updates.json",
@@ -84,7 +84,7 @@
             }
         },
         "URI~CONTENT~FILE://Users/steven/Code/retold/modules/utility/cumulation/.config/configstore/update-notifier-npm.json": {
-            "UUID": "4e715166-7c35-45b9-9842-b06cd636e51e",
+            "UUID": "f426a4dd-1004-41e2-9a08-8a0c00baadd5",
             "Type": "URI",
             "Hash": "URI~CONTENT~FILE://Users/steven/Code/retold/modules/utility/cumulation/.config/configstore/update-notifier-npm.json",
             "Path": "FILE://Users/steven/Code/retold/modules/utility/cumulation/.config/configstore/update-notifier-npm.json",
@@ -124,7 +124,7 @@
             }
         },
         "URI~CONTENT~FILE://Users/steven/Code/retold/modules/utility/cumulation/.config/installation/UI-Requirements.md": {
-            "UUID": "9242f6a5-23bb-46c6-a249-35cb0a121472",
+            "UUID": "9156f5b2-7d3d-4f3d-a4b5-e5c53391ae92",
             "Type": "URI",
             "Hash": "URI~CONTENT~FILE://Users/steven/Code/retold/modules/utility/cumulation/.config/installation/UI-Requirements.md",
             "Path": "FILE://Users/steven/Code/retold/modules/utility/cumulation/.config/installation/UI-Requirements.md",
@@ -163,7 +163,7 @@
             }
         },
         "URI~CONTENT~FILE://Users/steven/Code/retold/modules/utility/cumulation/.config/installation/install_luxury_code.js": {
-            "UUID": "f7b891f9-b9ab-450a-bdb2-86f1371e7845",
+            "UUID": "79778e71-a8b9-4272-a5b6-81bf38de7bc3",
             "Type": "URI",
             "Hash": "URI~CONTENT~FILE://Users/steven/Code/retold/modules/utility/cumulation/.config/installation/install_luxury_code.js",
             "Path": "FILE://Users/steven/Code/retold/modules/utility/cumulation/.config/installation/install_luxury_code.js",
@@ -203,7 +203,7 @@
             }
         },
         "URI~CONTENT~FILE://Users/steven/Code/retold/modules/utility/cumulation/.config/installation/install_luxury_default_configuration.json": {
-            "UUID": "ae41bfd7-ee67-466b-84fa-42b9479bc96a",
+            "UUID": "c4e72cdc-ecdb-4ed1-9c6e-0af0e163da35",
             "Type": "URI",
             "Hash": "URI~CONTENT~FILE://Users/steven/Code/retold/modules/utility/cumulation/.config/installation/install_luxury_default_configuration.json",
             "Path": "FILE://Users/steven/Code/retold/modules/utility/cumulation/.config/installation/install_luxury_default_configuration.json",
@@ -244,7 +244,7 @@
             }
         },
         "URI~CONTENT~FILE://Users/steven/Code/retold/modules/utility/cumulation/.config/installation/install_luxury_interaction.json": {
-            "UUID": "88c8796a-aeff-41a2-9a85-a0bc324ce046",
+            "UUID": "dfe36aed-4da5-4e0f-a16e-4c7164c0d5c7",
             "Type": "URI",
             "Hash": "URI~CONTENT~FILE://Users/steven/Code/retold/modules/utility/cumulation/.config/installation/install_luxury_interaction.json",
             "Path": "FILE://Users/steven/Code/retold/modules/utility/cumulation/.config/installation/install_luxury_interaction.json",
@@ -284,7 +284,7 @@
             }
         },
         "URI~CONTENT~FILE://Users/steven/Code/retold/modules/utility/cumulation/.config/installation/precedent.1.0.5.js": {
-            "UUID": "c17d6895-39b4-421b-bc0d-c6905c288262",
+            "UUID": "340b89be-3b91-4701-afda-54a86e8385c6",
             "Type": "URI",
             "Hash": "URI~CONTENT~FILE://Users/steven/Code/retold/modules/utility/cumulation/.config/installation/precedent.1.0.5.js",
             "Path": "FILE://Users/steven/Code/retold/modules/utility/cumulation/.config/installation/precedent.1.0.5.js",
@@ -325,7 +325,7 @@
             }
         },
         "URI~CONTENT~FILE://Users/steven/Code/retold/modules/utility/cumulation/.config/luxury-extras/.vscode/launch.json": {
-            "UUID": "3815c462-a5a5-4bf9-a84a-56ce787c4986",
+            "UUID": "5ef64887-0db0-4091-b1e0-a939ab281c6b",
             "Type": "URI",
             "Hash": "URI~CONTENT~FILE://Users/steven/Code/retold/modules/utility/cumulation/.config/luxury-extras/.vscode/launch.json",
             "Path": "FILE://Users/steven/Code/retold/modules/utility/cumulation/.config/luxury-extras/.vscode/launch.json",
@@ -364,7 +364,7 @@
             }
         },
         "URI~CONTENT~FILE://Users/steven/Code/retold/modules/utility/cumulation/.config/luxury-extras/Dockerfile_LUXURYCode": {
-            "UUID": "31a448b9-1618-49d5-8362-01101a677b3c",
+            "UUID": "16753d1e-8cda-4e01-975e-25f03537f582",
             "Type": "URI",
             "Hash": "URI~CONTENT~FILE://Users/steven/Code/retold/modules/utility/cumulation/.config/luxury-extras/Dockerfile_LUXURYCode",
             "Path": "FILE://Users/steven/Code/retold/modules/utility/cumulation/.config/luxury-extras/Dockerfile_LUXURYCode",
@@ -403,7 +403,7 @@
             }
         },
         "URI~CONTENT~FILE://Users/steven/Code/retold/modules/utility/cumulation/.config/luxury-extras/MySQL/Dockerfile_LUXURYCODE_MySQL": {
-            "UUID": "712c14a2-8553-4719-ab35-409da493e4e0",
+            "UUID": "e7dd7abc-9c74-41ef-89a4-65cc7b3a9323",
             "Type": "URI",
             "Hash": "URI~CONTENT~FILE://Users/steven/Code/retold/modules/utility/cumulation/.config/luxury-extras/MySQL/Dockerfile_LUXURYCODE_MySQL",
             "Path": "FILE://Users/steven/Code/retold/modules/utility/cumulation/.config/luxury-extras/MySQL/Dockerfile_LUXURYCODE_MySQL",
@@ -444,7 +444,7 @@
             }
         },
         "URI~CONTENT~FILE://Users/steven/Code/retold/modules/utility/cumulation/.config/luxury-extras/MySQL/MySQL-Laden-Entry.sh": {
-            "UUID": "37d02176-1ad1-4ef1-a2a1-60a6363b590e",
+            "UUID": "01543efb-170a-4a5f-83f9-a04ebc79767b",
             "Type": "URI",
             "Hash": "URI~CONTENT~FILE://Users/steven/Code/retold/modules/utility/cumulation/.config/luxury-extras/MySQL/MySQL-Laden-Entry.sh",
             "Path": "FILE://Users/steven/Code/retold/modules/utility/cumulation/.config/luxury-extras/MySQL/MySQL-Laden-Entry.sh",
@@ -485,7 +485,7 @@
             }
         },
         "URI~CONTENT~FILE://Users/steven/Code/retold/modules/utility/cumulation/.config/luxury-extras/MySQL/MySQL-Security.sql": {
-            "UUID": "6be96685-6fde-450d-b4db-f2f48a5ad652",
+            "UUID": "3091ad27-94ed-4525-bac6-d57649797b1f",
             "Type": "URI",
             "Hash": "URI~CONTENT~FILE://Users/steven/Code/retold/modules/utility/cumulation/.config/luxury-extras/MySQL/MySQL-Security.sql",
             "Path": "FILE://Users/steven/Code/retold/modules/utility/cumulation/.config/luxury-extras/MySQL/MySQL-Security.sql",
@@ -525,7 +525,7 @@
             }
         },
         "URI~CONTENT~FILE://Users/steven/Code/retold/modules/utility/cumulation/.gitignore": {
-            "UUID": "f83c44f5-27a2-4bc6-b865-35aca06168f5",
+            "UUID": "971c1d4e-2ce7-493d-bf61-e670c435ee1e",
             "Type": "URI",
             "Hash": "URI~CONTENT~FILE://Users/steven/Code/retold/modules/utility/cumulation/.gitignore",
             "Path": "FILE://Users/steven/Code/retold/modules/utility/cumulation/.gitignore",
@@ -560,7 +560,7 @@
             }
         },
         "URI~CONTENT~FILE://Users/steven/Code/retold/modules/utility/cumulation/.travis.yml": {
-            "UUID": "5d752509-e75a-415d-af28-e0130020c952",
+            "UUID": "cedc4aa3-b487-4785-a7eb-bd1127e3f288",
             "Type": "URI",
             "Hash": "URI~CONTENT~FILE://Users/steven/Code/retold/modules/utility/cumulation/.travis.yml",
             "Path": "FILE://Users/steven/Code/retold/modules/utility/cumulation/.travis.yml",
@@ -596,7 +596,7 @@
             }
         },
         "URI~CONTENT~FILE://Users/steven/Code/retold/modules/utility/cumulation/.vscode/launch.json": {
-            "UUID": "4a89c342-f185-4797-88ae-47e108aabe24",
+            "UUID": "c2ba1155-4c81-4f98-affb-9b2bdfa8bddc",
             "Type": "URI",
             "Hash": "URI~CONTENT~FILE://Users/steven/Code/retold/modules/utility/cumulation/.vscode/launch.json",
             "Path": "FILE://Users/steven/Code/retold/modules/utility/cumulation/.vscode/launch.json",
@@ -633,7 +633,7 @@
             }
         },
         "URI~CONTENT~FILE://Users/steven/Code/retold/modules/utility/cumulation/Dockerfile_LUXURYCode": {
-            "UUID": "9b6dbee2-4942-45a0-ab73-d67683370609",
+            "UUID": "48e49d7e-c7db-4fff-922d-addb313bba38",
             "Type": "URI",
             "Hash": "URI~CONTENT~FILE://Users/steven/Code/retold/modules/utility/cumulation/Dockerfile_LUXURYCode",
             "Path": "FILE://Users/steven/Code/retold/modules/utility/cumulation/Dockerfile_LUXURYCode",
@@ -670,7 +670,7 @@
             }
         },
         "URI~CONTENT~FILE://Users/steven/Code/retold/modules/utility/cumulation/LICENSE": {
-            "UUID": "68a5e0d5-65e6-4482-aaed-620ab70c2b2f",
+            "UUID": "f8d9a3f3-efab-43b0-a5cf-928319c52a0f",
             "Type": "URI",
             "Hash": "URI~CONTENT~FILE://Users/steven/Code/retold/modules/utility/cumulation/LICENSE",
             "Path": "FILE://Users/steven/Code/retold/modules/utility/cumulation/LICENSE",
@@ -706,7 +706,7 @@
             }
         },
         "URI~CONTENT~FILE://Users/steven/Code/retold/modules/utility/cumulation/README.md": {
-            "UUID": "b7f8b0f2-1977-4c8f-bc48-35bcde2eb54d",
+            "UUID": "8ee917c1-1a68-40e7-8f58-b49e70db1735",
             "Type": "URI",
             "Hash": "URI~CONTENT~FILE://Users/steven/Code/retold/modules/utility/cumulation/README.md",
             "Path": "FILE://Users/steven/Code/retold/modules/utility/cumulation/README.md",
@@ -716,7 +716,7 @@
             "Nature": "text",
             "Format": "markdown",
             "Schema": "Default",
-            "Content": "# Cumulation\n\n## Building\n\n```\ngulp minified\ngulp debug\n\n(or)\n\n`gulp build`\n\n",
+            "Content": "# Cumulation\n\n## Building\n\n```\ngulp minified\ngulp debug\n\n(or)\n\n`gulp build`\n\n## Related Packages\n\n- [fable](https://github.com/stevenvelozo/fable) - Application services framework\n\n## License\n\nMIT\n\n## Contributing\n\nPull requests are welcome. For details on our code of conduct, contribution process, and testing requirements, see the [Retold Contributing Guide](https://github.com/stevenvelozo/retold/blob/main/docs/contributing.md).\n",
             "Labels": [
                 "__LABELSET_TYPE",
                 "FILE",
@@ -734,15 +734,15 @@
                 "Default"
             ],
             "FSTAT": {
-                "Size": 77,
-                "Created": "2024-12-13T15:43:46.959Z",
-                "Modified": "2024-12-13T15:43:46.959Z",
-                "Accessed": "2024-12-13T18:52:16.293Z",
+                "Size": 434,
+                "Created": "2026-04-09T23:33:45.502Z",
+                "Modified": "2026-04-09T23:33:45.502Z",
+                "Accessed": "2026-04-09T23:33:45.508Z",
                 "Mode": 33188
             }
         },
         "URI~CONTENT~FILE://Users/steven/Code/retold/modules/utility/cumulation/bower.json": {
-            "UUID": "bf3f1751-000a-4e91-9672-59e94782fc4d",
+            "UUID": "5e662380-e853-4623-ab46-6bf9328ef4a7",
             "Type": "URI",
             "Hash": "URI~CONTENT~FILE://Users/steven/Code/retold/modules/utility/cumulation/bower.json",
             "Path": "FILE://Users/steven/Code/retold/modules/utility/cumulation/bower.json",
@@ -778,7 +778,7 @@
             }
         },
         "URI~CONTENT~FILE://Users/steven/Code/retold/modules/utility/cumulation/dist/cumulation.js": {
-            "UUID": "4b64c375-b2d4-478c-a234-151574822330",
+            "UUID": "d8d79815-3fb2-46b1-bfdf-b2cb870f8045",
             "Type": "URI",
             "Hash": "URI~CONTENT~FILE://Users/steven/Code/retold/modules/utility/cumulation/dist/cumulation.js",
             "Path": "FILE://Users/steven/Code/retold/modules/utility/cumulation/dist/cumulation.js",
@@ -815,7 +815,7 @@
             }
         },
         "URI~CONTENT~FILE://Users/steven/Code/retold/modules/utility/cumulation/dist/cumulation.min.js": {
-            "UUID": "6b9d2477-10ec-48f4-beb9-d16e82172e68",
+            "UUID": "1e75ee56-5e1f-49e4-a278-f4093eee4513",
             "Type": "URI",
             "Hash": "URI~CONTENT~FILE://Users/steven/Code/retold/modules/utility/cumulation/dist/cumulation.min.js",
             "Path": "FILE://Users/steven/Code/retold/modules/utility/cumulation/dist/cumulation.min.js",
@@ -853,7 +853,7 @@
             }
         },
         "URI~CONTENT~FILE://Users/steven/Code/retold/modules/utility/cumulation/dist/cumulation.min.js.map": {
-            "UUID": "7eb5a1ae-5c9f-42f4-8304-0d835d211df5",
+            "UUID": "9053dd0f-42f2-4d60-bbc2-c86cb9983570",
             "Type": "URI",
             "Hash": "URI~CONTENT~FILE://Users/steven/Code/retold/modules/utility/cumulation/dist/cumulation.min.js.map",
             "Path": "FILE://Users/steven/Code/retold/modules/utility/cumulation/dist/cumulation.min.js.map",
@@ -892,7 +892,7 @@
             }
         },
         "URI~CONTENT~FILE://Users/steven/Code/retold/modules/utility/cumulation/dist/indoctrinate_content_staging/Indoctrinate-Catalog-AppData.json": {
-            "UUID": "abe19e2d-cac2-4492-9fa5-d7e3cf84b46d",
+            "UUID": "0df9f757-d2d4-42e0-9532-7fcc4d0ab1df",
             "Type": "URI",
             "Hash": "URI~CONTENT~FILE://Users/steven/Code/retold/modules/utility/cumulation/dist/indoctrinate_content_staging/Indoctrinate-Catalog-AppData.json",
             "Path": "FILE://Users/steven/Code/retold/modules/utility/cumulation/dist/indoctrinate_content_staging/Indoctrinate-Catalog-AppData.json",
@@ -925,14 +925,124 @@
             ],
             "FSTAT": {
                 "Size": 502,
-                "Created": "2026-04-09T23:24:24.389Z",
-                "Modified": "2026-04-09T23:24:24.602Z",
-                "Accessed": "2026-04-09T23:24:24.389Z",
+                "Created": "2026-04-09T23:33:45.506Z",
+                "Modified": "2026-04-10T01:50:32.821Z",
+                "Accessed": "2026-04-10T00:12:18.210Z",
+                "Mode": 33188
+            }
+        },
+        "URI~CONTENT~FILE://Users/steven/Code/retold/modules/utility/cumulation/docs/.nojekyll": {
+            "UUID": "7b69210e-55de-49aa-887a-3161eea2fd19",
+            "Type": "URI",
+            "Hash": "URI~CONTENT~FILE://Users/steven/Code/retold/modules/utility/cumulation/docs/.nojekyll",
+            "Path": "FILE://Users/steven/Code/retold/modules/utility/cumulation/docs/.nojekyll",
+            "Location": "/Users/steven/Code/retold/modules/utility/cumulation/docs",
+            "Name": ".nojekyll",
+            "MimeType": null,
+            "Nature": "UNKNOWN",
+            "Format": "UNKNOWN",
+            "Schema": "Default",
+            "Content": false,
+            "Labels": [
+                "__LABELSET_TYPE",
+                "FILE",
+                "__LABELSET_ADDRESS",
+                "docs",
+                "__LABELSET_NAME",
+                "__LABELSET_EXTENSION",
+                "",
+                "__LABELSET_FILENAME",
+                ".nojekyll",
+                "__LABELSET_FULLPATH",
+                "FILE://Users/steven/Code/retold/modules/utility/cumulation/docs/.nojekyll",
+                "__LABELSET_FORMAT",
+                "UNKNOWN",
+                "Default"
+            ],
+            "FSTAT": {
+                "Created": "2026-04-09T23:33:45.506Z",
+                "Modified": "2026-04-09T23:33:45.506Z",
+                "Accessed": "2026-04-09T23:33:45.506Z",
+                "Mode": 33188
+            }
+        },
+        "URI~CONTENT~FILE://Users/steven/Code/retold/modules/utility/cumulation/docs/css/docuserve.css": {
+            "UUID": "1c67dfcd-7960-41ee-8a34-c7243cc948e6",
+            "Type": "URI",
+            "Hash": "URI~CONTENT~FILE://Users/steven/Code/retold/modules/utility/cumulation/docs/css/docuserve.css",
+            "Path": "FILE://Users/steven/Code/retold/modules/utility/cumulation/docs/css/docuserve.css",
+            "Location": "/Users/steven/Code/retold/modules/utility/cumulation/docs/css",
+            "Name": "docuserve.css",
+            "MimeType": "text/css",
+            "Nature": "text",
+            "Format": "css",
+            "Schema": "Default",
+            "Content": false,
+            "Labels": [
+                "__LABELSET_TYPE",
+                "FILE",
+                "__LABELSET_ADDRESS",
+                "docs",
+                "css",
+                "__LABELSET_NAME",
+                "docuserve",
+                "__LABELSET_EXTENSION",
+                ".css",
+                "__LABELSET_FILENAME",
+                "docuserve.css",
+                "__LABELSET_FULLPATH",
+                "FILE://Users/steven/Code/retold/modules/utility/cumulation/docs/css/docuserve.css",
+                "__LABELSET_FORMAT",
+                "css",
+                "Default"
+            ],
+            "FSTAT": {
+                "Size": 1263,
+                "Created": "2026-04-09T23:33:45.507Z",
+                "Modified": "2026-04-09T23:33:45.507Z",
+                "Accessed": "2026-04-10T00:12:18.210Z",
+                "Mode": 33188
+            }
+        },
+        "URI~CONTENT~FILE://Users/steven/Code/retold/modules/utility/cumulation/docs/index.html": {
+            "UUID": "f10fe682-4b11-4866-8e10-1a31a1a022ed",
+            "Type": "URI",
+            "Hash": "URI~CONTENT~FILE://Users/steven/Code/retold/modules/utility/cumulation/docs/index.html",
+            "Path": "FILE://Users/steven/Code/retold/modules/utility/cumulation/docs/index.html",
+            "Location": "/Users/steven/Code/retold/modules/utility/cumulation/docs",
+            "Name": "index.html",
+            "MimeType": "text/html",
+            "Nature": "text",
+            "Format": "html",
+            "Schema": "Default",
+            "Content": false,
+            "Labels": [
+                "__LABELSET_TYPE",
+                "FILE",
+                "__LABELSET_ADDRESS",
+                "docs",
+                "__LABELSET_NAME",
+                "index",
+                "__LABELSET_EXTENSION",
+                ".html",
+                "__LABELSET_FILENAME",
+                "index.html",
+                "__LABELSET_FULLPATH",
+                "FILE://Users/steven/Code/retold/modules/utility/cumulation/docs/index.html",
+                "__LABELSET_FORMAT",
+                "html",
+                "Default"
+            ],
+            "FSTAT": {
+                "Size": 1652,
+                "Created": "2026-04-09T23:33:45.507Z",
+                "Modified": "2026-04-09T23:33:45.507Z",
+                "Accessed": "2026-04-10T00:12:18.210Z",
                 "Mode": 33188
             }
         },
         "URI~CONTENT~FILE://Users/steven/Code/retold/modules/utility/cumulation/docs/retold-catalog.json": {
-            "UUID": "921d1138-254f-4053-8a2a-419aea7ae90a",
+            "UUID": "f76b25bf-2d22-4718-a2f5-ec6832bd2e94",
             "Type": "URI",
             "Hash": "URI~CONTENT~FILE://Users/steven/Code/retold/modules/utility/cumulation/docs/retold-catalog.json",
             "Path": "FILE://Users/steven/Code/retold/modules/utility/cumulation/docs/retold-catalog.json",
@@ -962,15 +1072,54 @@
                 "Default"
             ],
             "FSTAT": {
-                "Size": 1652,
-                "Created": "2026-04-09T23:24:24.399Z",
-                "Modified": "2026-04-09T23:24:24.399Z",
-                "Accessed": "2026-04-09T23:24:24.399Z",
+                "Size": 1958,
+                "Created": "2026-04-09T23:33:45.507Z",
+                "Modified": "2026-04-10T01:50:32.617Z",
+                "Accessed": "2026-04-10T00:12:18.210Z",
+                "Mode": 33188
+            }
+        },
+        "URI~CONTENT~FILE://Users/steven/Code/retold/modules/utility/cumulation/docs/retold-keyword-index.json": {
+            "UUID": "3ecbe15e-f411-4dfc-b283-bd29bcf192de",
+            "Type": "URI",
+            "Hash": "URI~CONTENT~FILE://Users/steven/Code/retold/modules/utility/cumulation/docs/retold-keyword-index.json",
+            "Path": "FILE://Users/steven/Code/retold/modules/utility/cumulation/docs/retold-keyword-index.json",
+            "Location": "/Users/steven/Code/retold/modules/utility/cumulation/docs",
+            "Name": "retold-keyword-index.json",
+            "MimeType": "application/json",
+            "Nature": "application",
+            "Format": "json",
+            "Schema": "Default",
+            "Content": false,
+            "Labels": [
+                "__LABELSET_TYPE",
+                "FILE",
+                "__LABELSET_ADDRESS",
+                "docs",
+                "__LABELSET_NAME",
+                "retold",
+                "keyword",
+                "index",
+                "__LABELSET_EXTENSION",
+                ".json",
+                "__LABELSET_FILENAME",
+                "retold-keyword-index.json",
+                "__LABELSET_FULLPATH",
+                "FILE://Users/steven/Code/retold/modules/utility/cumulation/docs/retold-keyword-index.json",
+                "__LABELSET_FORMAT",
+                "json",
+                "Default"
+            ],
+            "FSTAT": {
+                "Size": 269,
+                "Created": "2026-04-09T23:33:45.507Z",
+                "Modified": "2026-04-09T23:33:45.507Z",
+                "Accessed": "2026-04-10T00:12:18.210Z",
                 "Mode": 33188
             }
         },
         "URI~CONTENT~FILE://Users/steven/Code/retold/modules/utility/cumulation/gulpfile.js": {
-            "UUID": "1b056eee-1931-4e5b-a47e-8b571fe43103",
+            "UUID": "7105887a-d70f-43e2-9212-a8749f4ceef8",
             "Type": "URI",
             "Hash": "URI~CONTENT~FILE://Users/steven/Code/retold/modules/utility/cumulation/gulpfile.js",
             "Path": "FILE://Users/steven/Code/retold/modules/utility/cumulation/gulpfile.js",
@@ -1006,7 +1155,7 @@
             }
         },
         "URI~CONTENT~FILE://Users/steven/Code/retold/modules/utility/cumulation/package.json": {
-            "UUID": "ebf83d46-d143-4b3a-b52c-780e0e150172",
+            "UUID": "a44479ba-e412-449c-a35e-e4edc45d5aad",
             "Type": "URI",
             "Hash": "URI~CONTENT~FILE://Users/steven/Code/retold/modules/utility/cumulation/package.json",
             "Path": "FILE://Users/steven/Code/retold/modules/utility/cumulation/package.json",
@@ -1106,7 +1255,7 @@
             }
         },
         "URI~CONTENT~FILE://Users/steven/Code/retold/modules/utility/cumulation/source/Cumulation-Browser-Shim.js": {
-            "UUID": "a3c2050c-5ffe-469b-aabf-89a6b38fef52",
+            "UUID": "0420386e-5fc9-42ed-a375-7407d8186ae3",
             "Type": "URI",
             "Hash": "URI~CONTENT~FILE://Users/steven/Code/retold/modules/utility/cumulation/source/Cumulation-Browser-Shim.js",
             "Path": "FILE://Users/steven/Code/retold/modules/utility/cumulation/source/Cumulation-Browser-Shim.js",
@@ -1145,7 +1294,7 @@
             }
         },
         "URI~CONTENT~FILE://Users/steven/Code/retold/modules/utility/cumulation/source/Cumulation-Log.js": {
-            "UUID": "0ca62f8b-a7be-40a4-82f9-d50713bcc414",
+            "UUID": "926b8243-3afa-4c4c-8a8c-d832a2d77c75",
             "Type": "URI",
             "Hash": "URI~CONTENT~FILE://Users/steven/Code/retold/modules/utility/cumulation/source/Cumulation-Log.js",
             "Path": "FILE://Users/steven/Code/retold/modules/utility/cumulation/source/Cumulation-Log.js",
@@ -1183,7 +1332,7 @@
             }
         },
         "URI~CONTENT~FILE://Users/steven/Code/retold/modules/utility/cumulation/source/Cumulation-Settings-Default.js": {
-            "UUID": "34642bc0-aa31-4c19-8482-ac4d5b657a56",
+            "UUID": "8780912c-5ab0-44cf-aab6-bfc6e2213d3f",
             "Type": "URI",
             "Hash": "URI~CONTENT~FILE://Users/steven/Code/retold/modules/utility/cumulation/source/Cumulation-Settings-Default.js",
             "Path": "FILE://Users/steven/Code/retold/modules/utility/cumulation/source/Cumulation-Settings-Default.js",
@@ -1222,7 +1371,7 @@
             }
         },
         "URI~CONTENT~FILE://Users/steven/Code/retold/modules/utility/cumulation/source/Cumulation.js": {
-            "UUID": "72e7d311-17d3-4da1-8954-ef8c1e8ef331",
+            "UUID": "2003f314-7a96-406e-9087-4849a20decf3",
             "Type": "URI",
             "Hash": "URI~CONTENT~FILE://Users/steven/Code/retold/modules/utility/cumulation/source/Cumulation.js",
             "Path": "FILE://Users/steven/Code/retold/modules/utility/cumulation/source/Cumulation.js",
@@ -1259,7 +1408,7 @@
             }
         },
         "URI~CONTENT~FILE://Users/steven/Code/retold/modules/utility/cumulation/source/graph/Cumulation-GraphGet.js": {
-            "UUID": "617d2b3e-cf04-45e7-893c-7a7e075c550e",
+            "UUID": "f4acc63f-2420-4fc7-a01f-df18b505bf25",
             "Type": "URI",
             "Hash": "URI~CONTENT~FILE://Users/steven/Code/retold/modules/utility/cumulation/source/graph/Cumulation-GraphGet.js",
             "Path": "FILE://Users/steven/Code/retold/modules/utility/cumulation/source/graph/Cumulation-GraphGet.js",
@@ -1298,7 +1447,7 @@
             }
         },
         "URI~CONTENT~FILE://Users/steven/Code/retold/modules/utility/cumulation/test/Cumulation_tests.js": {
-            "UUID": "51e15992-434f-4d9b-b29e-e467c1a371c9",
+            "UUID": "84c8bc06-5b74-4d7f-81e2-4582ec102422",
             "Type": "URI",
             "Hash": "URI~CONTENT~FILE://Users/steven/Code/retold/modules/utility/cumulation/test/Cumulation_tests.js",
             "Path": "FILE://Users/steven/Code/retold/modules/utility/cumulation/test/Cumulation_tests.js",
