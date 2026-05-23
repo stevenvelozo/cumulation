@@ -1,5 +1,7 @@
 # Cumulation
 
+> **[&#9654; Read the Cumulation Documentation](https://stevenvelozo.github.io/cumulation/)** &mdash; interactive docs with the full API reference.
+
 ## Building
 
 ```
