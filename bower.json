@@ -7,7 +7,7 @@
     "steven velozo <steven@velozo.com>"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/stevenvelozo/cumulation",
+  "homepage": "https://github.com/fable-retold/cumulation",
   "moduleType": [
     "globals",
     "node"

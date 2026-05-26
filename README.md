@@ -1,6 +1,6 @@
 # Cumulation
 
-> **[&#9654; Read the Cumulation Documentation](https://stevenvelozo.github.io/cumulation/)** &mdash; interactive docs with the full API reference.
+> **[&#9654; Read the Cumulation Documentation](https://fable-retold.github.io/cumulation/)** &mdash; interactive docs with the full API reference.
 
 ## Building
 
@@ -14,7 +14,7 @@ gulp debug
 
 ## Related Packages
 
-- [fable](https://github.com/stevenvelozo/fable) - Application services framework
+- [fable](https://github.com/fable-retold/fable) - Application services framework
 
 ## License
 

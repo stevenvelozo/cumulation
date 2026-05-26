@@ -18,7 +18,7 @@
   "author": "steven velozo <steven@velozo.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/stevenvelozo/cumulation/issues"
+    "url": "https://github.com/fable-retold/cumulation/issues"
   },
   "mocha": {
     "diff": true,
@@ -38,7 +38,7 @@
       "lib/vendor"
     ]
   },
-  "homepage": "https://github.com/stevenvelozo/cumulation#readme",
+  "homepage": "https://github.com/fable-retold/cumulation#readme",
   "devDependencies": {
     "babel-core": "^6.26.3",
     "browserify": "^16.2.2",
