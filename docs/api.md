@@ -147,7 +147,7 @@ libAnimal.deleteRecordFromServer(17,
 	});
 ```
 
-> A `deleteRecord(pRecordID, fCallback)` method also exists, but in the current source it calls `getRecordFromServer` rather than `deleteRecordFromServer`, so it issues a `GET`, not a `DELETE`. Use `deleteRecordFromServer` to delete. See [Unknowns](#unknowns).
+> A `deleteRecord(pRecordID, fCallback)` convenience method also exists; it delegates to `deleteRecordFromServer`.
 
 ## parseFilter(pFilter)
 
@@ -197,6 +197,5 @@ libAnimal.log.logTimeDelta(tmpStart, 'Load complete');
 The following are declared in the source but their behavior could not be verified against the code in `source/`. They are documented here rather than guessed at.
 
 - **Caching is configured but not exercised.** The `Cached`, `CacheExpirationTime`, and `Online` settings exist in the defaults, but the record methods in `Cumulation.js` always issue an HTTP request. No caching, cache expiration, or offline path was found in the source, so these settings appear to have no effect in the current version.
-- **`deleteRecord` does not delete.** As noted above, `deleteRecord` calls `getRecordFromServer` in the current source. Whether this is an intentional alias or a defect is not determinable from the code; `deleteRecordFromServer` is the method that issues a `DELETE`.
 - **`pScope` constructor argument.** The constructor accepts a second `pScope` argument (and the tests pass one), but it is not referenced after being received. Its intended role is not determinable from the source.
 - **The `matilde` dependency.** `matilde` is listed as a dependency and referenced in commented-out code (object filter parsing), but it is not active in the current source.
