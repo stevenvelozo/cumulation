@@ -357,7 +357,7 @@ class Cumulation
 	};
 	deleteRecord (pRecordID, fCallback)
 	{
-		this.getRecordFromServer(pRecordID, fCallback);
+		this.deleteRecordFromServer(pRecordID, fCallback);
 	};
 };
 
