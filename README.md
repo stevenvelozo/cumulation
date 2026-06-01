@@ -124,7 +124,7 @@ npm test
 
 ## Related Modules
 
-- [fable](https://fable-retold.github.io/fable/) - Application services framework
+- [fable](https://github.com/fable-retold/fable) - Application services framework
 
 ## License
 
