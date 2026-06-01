@@ -1,6 +1,6 @@
 # Cumulation
 
-> **[&#9654; Read the Cumulation Documentation](https://fable-retold.github.io/cumulation/)** &mdash; interactive docs with the full API reference.
+> **[Read the Cumulation Documentation](https://fable-retold.github.io/cumulation/)** - interactive docs with the full API reference.
 
 > A browser and Node.js client for reading and writing records against a Retold-style RESTful data endpoint.
 
